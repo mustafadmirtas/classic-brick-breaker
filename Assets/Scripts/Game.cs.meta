@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: f139fbf9ec59a414e8d3040e194e9692
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - rb: {fileID: 2252108290755990415, guid: 5737059fb28c0684dad44bbdde1d1966, type: 3}
+  - gameObject: {fileID: 2252108290755990412, guid: 5737059fb28c0684dad44bbdde1d1966,
+      type: 3}
+  - cubuk: {fileID: 634811691724590509, guid: 3f14f4aadd1e9904d85b520b9dc967fe, type: 3}
+  - score_Text: {instanceID: 0}
+  - zaman_Text: {instanceID: 0}
+  - spr: {instanceID: 0}
+  - spr2: {instanceID: 0}
+  - tp_spr: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
