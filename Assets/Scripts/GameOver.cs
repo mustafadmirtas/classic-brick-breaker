@@ -7,7 +7,7 @@ public class GameOver : MonoBehaviour
 {
     public GameObject gameOver,ball,adManagers,image1,image2,soundManager;
     public Button tryagain_button,cont_ads_button,quit_button;
-    public Text text;
+    public Text text,text2;
     int health;
 
     Game game;
@@ -57,7 +57,7 @@ public class GameOver : MonoBehaviour
                 {
                     gameOver.SetActive(true);
                     Time.timeScale = 0;
-                    text.text = "Puanınız  : " + PlayerPrefs.GetInt("Puan").ToString();
+                    text.text = text.text +"  " + text2.text;
                     sS.PlaySound(0);
                 }
                 
@@ -76,7 +76,7 @@ public class GameOver : MonoBehaviour
     }
     void QuitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
     void Cont_Ads()
     {

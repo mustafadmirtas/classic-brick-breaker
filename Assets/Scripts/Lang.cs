@@ -29,7 +29,7 @@ public class Lang : MonoBehaviour
     }
     public void LangChecker()
     {
-        if (PlayerPrefs.GetInt("Lang", 0) == 1)
+        if (PlayerPrefs.GetInt("Lang", 1) == 1)
         {
             buttons[0].image.sprite = tr[0];
             buttons[1].image.sprite = tr[1];
@@ -37,7 +37,7 @@ public class Lang : MonoBehaviour
             image_lvl.sprite = tr[3];
             image_lvl.rectTransform.localScale = new Vector3(1,2);
         }
-        if (PlayerPrefs.GetInt("Lang", 0) == 2)
+        if (PlayerPrefs.GetInt("Lang", 1) == 2)
         {
             buttons[0].image.sprite = en[0];
             buttons[1].image.sprite = en[1];
@@ -60,30 +60,6 @@ public class Lang : MonoBehaviour
         }
         panel_lang.SetActive(false);
     }
-    void Texts()
-    {
-        tr_text[0] = "Skor";
-        tr_text[1] = "Congrats";
-        tr_text[2] = "Bölümü Tamamladınız";
-        tr_text[3] = "Sonraki Bölüme Geç";
-        tr_text[4] = "Oyun Bitti";
-        tr_text[5] = "Tekrar Deneyin";
-        tr_text[6] = "Skorunuz";
-        tr_text[7] = "Tekrar Dene";
-        tr_text[8] = "Reklam İle Devam Et";
-        tr_text[9] = "Çıkış";
 
-        en_text[0] = "Skor";
-        en_text[1] = "Congrats";
-        en_text[2] = "Bölümü Tamamladınız";
-        en_text[3] = "Sonraki Bölüme Geç";
-        en_text[4] = "Oyun Bitti";
-        en_text[5] = "Tekrar Deneyin";
-        en_text[6] = "Skorunuz";
-        en_text[7] = "Tekrar Dene";
-        en_text[8] = "Reklam İle Devam Et";
-        en_text[9] = "Çıkış";
-
-    }
 
 }

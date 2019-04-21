@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class MenuScript : MonoBehaviour
 {
     public Button button_play, button_opt, button_quit, buttonback_menu;
-    public GameObject panel_play, panel_opt;
+    public GameObject panel_play, panel_opt,panel_lang;
     public Button[] buttons2 = new Button[32];
     // Start is called before the first frame update
     Lang language;
@@ -23,12 +23,14 @@ public class MenuScript : MonoBehaviour
         {
             button.onClick.AddListener(() => { SelectLevel(button.GetComponentInChildren<Text>().text); });
         }
-        /*if((PlayerPrefs.GetInt("Level", 0)) == 1){
+        if((PlayerPrefs.GetInt("Level", 0)) == 1){
             play_panel();
-        }*/
+        }
         OpenLevels();
-        print(PlayerPrefs.GetInt("Lang", 0).ToString());
-
+        if ((PlayerPrefs.GetInt("Lang", 0)) == 0)
+        {
+            panel_lang.SetActive(true);
+        }
     }
 
     // Update is called once per frame

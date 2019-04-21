@@ -17,6 +17,11 @@ TagManager:
   - triple
   - through
   - Level_Button
+  - inv_brick
+  - gold_brick
+  - 3rd_brick
+  - 2rd_brick
+  - 1rd_brick
   layers:
   - Default
   - TransparentFX

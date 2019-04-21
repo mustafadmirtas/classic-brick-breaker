@@ -25,7 +25,32 @@ public class Bullet : MonoBehaviour
         if(collision.CompareTag("tas")){
             Destroy(collision.gameObject);
             Destroy(gameObject);
+        }
+        if (collision.CompareTag("gold_brick"))
+        {
+            
+            Destroy(gameObject);
+        }
+        if (collision.gameObject.CompareTag("inv_brick"))
+        {
+            if (collision.gameObject.GetComponent<SpriteRenderer>().enabled == false)
+            {
+                collision.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            }
+            else
+            {
+                Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                Destroy(collision.gameObject);
+            }
+
+
+        }
+        if (collision.gameObject.CompareTag("3rd_brick"))
+        {
+           
           
+
+
         }
     }
 

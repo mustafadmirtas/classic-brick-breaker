@@ -8,15 +8,16 @@ public class Game : MonoBehaviour
     public Rigidbody2D rb;
     public GameObject gameObject,stick,levelComp;
     public Collision2D collision2;
-    public static int point;
+    public int point;
     int balltype,sticktype,a;
     public Text score_Text,zaman_Text;
     float radius = 0.4f;
     private Collider2D[] hitCol2D;
-    public Sprite spr,spr2,tp_spr;
+    public Sprite spr,spr2,tp_spr,spr_brick2,spr_brick1;
     public GameObject[] luck_spec;
     public Button button;
     AdManager ad;
+    public Text[] texts = new Text[10];
 
     // Start is called before the first frame update
     void Start()
@@ -28,6 +29,7 @@ public class Game : MonoBehaviour
         sticktype = 0;
         button.onClick.AddListener(SonrakiBolum);
         ad = new AdManager();
+        LangCheck();
     }
     private void FixedUpdate()
     {
@@ -63,10 +65,42 @@ public class Game : MonoBehaviour
                ItemCreate(vector2);
                
             }
+            if (collision.gameObject.CompareTag("inv_brick")) // if ball tag inv_brick brick will be visible and second tag brick destory
+            {
+                if(collision.gameObject.GetComponent<SpriteRenderer>().enabled == false)
+                {
+                    collision.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                }
+                else
+                {
+                    Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+                    Destroy(collision.gameObject);
+                    puanEkle(10);
+                    isThisEnd();
+                    ItemCreate(vector2);
+                }
+           
+
+            }
+            if (collision.gameObject.CompareTag("3rd_brick"))
+            {
+                collision.gameObject.transform.tag = "2rd_brick";
+                collision.gameObject.GetComponent<SpriteRenderer>().sprite = spr_brick2;
+            }
+            else if (collision.gameObject.CompareTag("2rd_brick"))
+            {
+                collision.gameObject.tag = "1rd_brick";
+                collision.gameObject.GetComponent<SpriteRenderer>().sprite = spr_brick1;
+            }
+            else if (collision.gameObject.CompareTag("1rd_brick"))
+            {
+                Destroy(collision.gameObject);
+            }
         }
         if (balltype == 1) // that means ball have fire power and when tag with tas(brick) it explode and destroy near bricks to.
         {
-            if (collision.gameObject.CompareTag("tas"))
+            if (collision.gameObject.CompareTag("tas") || collision.gameObject.CompareTag("3rd_brick") || collision.gameObject.CompareTag("inv_brick") || collision.gameObject.CompareTag("gold_brick")
+                || collision.gameObject.CompareTag("2rd_brick") || collision.gameObject.CompareTag("1rd_brick"))
             {
                 Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
                 patla(collision.contacts[0].point);
@@ -160,5 +194,40 @@ public class Game : MonoBehaviour
         SceneManager.LoadScene(0);
         PlayerPrefs.SetInt("Level", 1);
     }
+    void LangCheck()
+    {
+        if(PlayerPrefs.GetInt("Lang", 1)== 1)
+        {
 
+            texts[0].text = "Skor :";
+            texts[1].text = "Tebrikler";
+            texts[2].text = "Bölümü Tamamladınız";
+            texts[3].text = "Sonraki Bölüme Geç";
+            texts[4].text = "Oyun Bitti";
+            texts[5].text = "Tekrar Deneyin";
+            texts[6].text = "Skorunuz";
+            texts[7].text = "Tekrar Dene";
+            texts[8].text = "Reklam İle Devam Et";
+            texts[9].text = "Çıkış";
+
+
+        }
+        if (PlayerPrefs.GetInt("Lang", 1) == 2)
+        {
+
+
+            texts[0].text = "Score :";
+            texts[1].text = "Congrats!";
+            texts[2].text = "Level Completed";
+            texts[3].text = "Next Level";
+            texts[4].text = "Game Over";
+            texts[5].text = "Try Again";
+            texts[6].text = "Your Score";
+            texts[7].text = "Try Again";
+            texts[8].text = "Continue with Ads";
+            texts[9].text = "Exit";
+
+
+        }
+    }
 }
