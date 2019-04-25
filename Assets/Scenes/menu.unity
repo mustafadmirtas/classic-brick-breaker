@@ -4738,6 +4738,7 @@ MonoBehaviour:
   buttonback_menu: {fileID: 1457056780}
   panel_play: {fileID: 171923551}
   panel_opt: {fileID: 830656516}
+  panel_lang: {fileID: 191532899}
   buttons2:
   - {fileID: 1154095829}
   - {fileID: 241440399}
