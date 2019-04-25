@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 2252108290755990412}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.54, y: -2.42, z: 0}
-  m_LocalScale: {x: 0.2627145, y: 0.2627145, z: 0.2627145}
+  m_LocalScale: {x: 0.122208856, y: 0.122208856, z: 0.122208856}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f4dbad7a3b8bb394681e05c5feba4467, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 350aacad64fa23f469366225b5803a24, type: 3}
   m_Color: {r: 0.9433962, g: 0.9433962, b: 0.9433962, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -125,6 +125,8 @@ MonoBehaviour:
   spr: {fileID: 21300000, guid: caa4a96ed20687a4981c69d4b2d6f440, type: 3}
   spr2: {fileID: 21300000, guid: 9cd5796a3db57e647a9cd74dd7a8b7bd, type: 3}
   tp_spr: {fileID: 21300000, guid: db38384af5ed75b46aade07fe7d7a0e7, type: 3}
+  spr_brick2: {fileID: 0}
+  spr_brick1: {fileID: 0}
   luck_spec:
   - {fileID: 4541285401391103199, guid: 28f2a411d69752542a0066168d6a9040, type: 3}
   - {fileID: 8477863176580447518, guid: 0509f2f9c8b577f4e8a505de5f7686f7, type: 3}
@@ -132,6 +134,17 @@ MonoBehaviour:
   - {fileID: 1569927988307093307, guid: 139280092adcab345bf8bfda3b0f24b0, type: 3}
   - {fileID: 7753399748598815813, guid: 2a3990b9525b99142ace2847f4cc39bb, type: 3}
   button: {fileID: 0}
+  texts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!58 &2252108290755990408
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -147,4 +160,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.0799999
+  m_Radius: 1.02
