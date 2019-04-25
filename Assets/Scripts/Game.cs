@@ -11,11 +11,11 @@ public class Game : MonoBehaviour
     public int point;
     int balltype,sticktype,a;
     public Text score_Text,zaman_Text;
-    float radius = 0.5f;
+    float radius = 0.4f;
     private Collider2D[] hitCol2D;
     public Sprite spr,spr2,tp_spr,spr_brick2,spr_brick1;
     public GameObject[] luck_spec;
-    public Button button_nextlevel;
+    public Button button;
     AdManager ad;
     public Text[] texts = new Text[10];
 
@@ -27,10 +27,9 @@ public class Game : MonoBehaviour
         point = int.Parse(score_Text.text);
         balltype = 0;
         sticktype = 0;
-        button_nextlevel.onClick.AddListener(SonrakiBolum);
+        button.onClick.AddListener(SonrakiBolum);
         ad = new AdManager();
         LangCheck();
-      
     }
     private void FixedUpdate()
     {
@@ -107,7 +106,7 @@ public class Game : MonoBehaviour
                 patla(collision.contacts[0].point);
                 ItemCreate(vector2);
                 isThisEnd();
-                
+              
             }
         }
     }
@@ -178,9 +177,9 @@ public class Game : MonoBehaviour
             {
                     ad.Video_Ads();
             }
-            if(PlayerPrefs.GetInt("Comp_Levels") <= SceneManager.GetActiveScene().buildIndex)
+            if(PlayerPrefs.GetInt("Comp_Level") < SceneManager.GetActiveScene().buildIndex)
             {
-                PlayerPrefs.SetInt("Comp_Levels", SceneManager.GetActiveScene().buildIndex + 1);
+                PlayerPrefs.SetInt("Comp_Level", SceneManager.GetActiveScene().buildIndex + 1);
             }
             
         }
