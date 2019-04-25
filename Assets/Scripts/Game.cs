@@ -25,7 +25,7 @@ public class Game : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(0, 0);
         point = int.Parse(score_Text.text);
-        balltype = 0;
+        balltype = 1;
         sticktype = 0;
         button_nextlevel.onClick.AddListener(SonrakiBolum);
         ad = new AdManager();
@@ -100,9 +100,9 @@ public class Game : MonoBehaviour
         }
         if (balltype == 1) // that means ball have fire power and when tag with tas(brick) it explode and destroy near bricks to.
         {
-            if (collision.gameObject.CompareTag("tas") || collision.gameObject.CompareTag("3rd_brick") || collision.gameObject.CompareTag("inv_brick") || collision.gameObject.CompareTag("gold_brick")
-                || collision.gameObject.CompareTag("2rd_brick") || collision.gameObject.CompareTag("1rd_brick"))
-            {
+            if (collision.gameObject.CompareTag("tas") || collision.gameObject.CompareTag("3rd_brick") || collision.gameObject.CompareTag("inv_brick") || 
+                collision.gameObject.CompareTag("gold_brick") || collision.gameObject.CompareTag("2rd_brick") || collision.gameObject.CompareTag("1rd_brick")) {
+
                 Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
                 patla(collision.contacts[0].point);
                 ItemCreate(vector2);
@@ -136,7 +136,8 @@ public class Game : MonoBehaviour
 
         foreach(Collider2D hitCol in hitCol2D)
         {
-            if (hitCol.gameObject.CompareTag("tas"))
+            if (hitCol.gameObject.CompareTag("tas") || hitCol.gameObject.CompareTag("inv_brick") || hitCol.gameObject.CompareTag("3rd_brick") || hitCol.gameObject.CompareTag("2rd_brick")
+                || hitCol.gameObject.CompareTag("1rd_brick") || hitCol.gameObject.CompareTag("gold_brick"))
             {
                 Destroy(hitCol.gameObject);
                 puanEkle(30);

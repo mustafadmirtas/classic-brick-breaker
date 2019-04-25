@@ -27,7 +27,7 @@ public class Play : MonoBehaviour
         stick_size = 0;
         stick_type = 0;
         soundScript = soundManager.GetComponent<SoundScript>();
-
+        PlayerPrefs.DeleteAll();
     }
 
     // Update is called once per frame
