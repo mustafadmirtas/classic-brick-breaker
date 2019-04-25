@@ -238,6 +238,15 @@ public class Play : MonoBehaviour
             Collider2D col2 = gameObjects[i].GetComponent<BoxCollider2D>();
             col2.isTrigger = true;
         }
+        GameObject[] gameObjects2;
+        gameObjects2 = GameObject.FindGameObjectsWithTag("inv_brick");
+        if (gameObjects2 != null) { 
+        for (int i = 0; i < gameObjects.Length; i++)
+        {
+            Collider2D col2 = gameObjects2[i].GetComponent<BoxCollider2D>();
+            col2.isTrigger = true;
+        }
+        }
     }
 
     public void CreateBall()
