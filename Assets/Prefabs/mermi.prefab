@@ -95,6 +95,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score_Text: {fileID: 0}
+  spr_brick2: {fileID: 21300000, guid: 3f761de427b55b244815d18bbb090b10, type: 3}
+  spr_brick1: {fileID: 21300000, guid: 02d278e9cc326ae41824107cbc4b93b1, type: 3}
 --- !u!50 &739454390708938872
 Rigidbody2D:
   serializedVersion: 4

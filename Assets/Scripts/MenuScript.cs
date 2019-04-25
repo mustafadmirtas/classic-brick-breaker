@@ -17,7 +17,7 @@ public class MenuScript : MonoBehaviour
         buttonback_menu.onClick.AddListener(play_backmenu);
         button_opt.onClick.AddListener(opt_panel);
         button_quit.onClick.AddListener(quit_game);
-
+        
         language = new Lang();
         foreach (Button button in buttons2)
         {
@@ -31,6 +31,7 @@ public class MenuScript : MonoBehaviour
         {
             panel_lang.SetActive(true);
         }
+        print(PlayerPrefs.GetInt("Comp_Levels").ToString());
     }
 
     // Update is called once per frame
@@ -63,7 +64,7 @@ public class MenuScript : MonoBehaviour
     void OpenLevels()
     {
         int a = PlayerPrefs.GetInt("Comp_Levels", 1);
-        for(int i = 0; i<= a; i++)
+        for(int i = 0; i< a; i++)
         {
             buttons2[i].interactable = true;
         }

@@ -78,9 +78,11 @@ public class Play : MonoBehaviour
                 firsttouch = true;
 
             }
-            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);     
+            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            if (pos.y < 3.5f) {
             position = new Vector2(-pos.x, pos.y);
             rigidbody.position = new Vector2(-position.x, -3.06f);
+            }
            
         }
     }
@@ -241,7 +243,7 @@ public class Play : MonoBehaviour
     public void CreateBall()
         {
               GameObject go = GameObject.FindGameObjectWithTag("ball");
-              go.transform.position = new Vector2(0.54f, -1.32f);
+              go.transform.position = new Vector2(0f, -2.32f);
               Rigidbody2D r2d = go.GetComponent<Rigidbody2D>();
               r2d.velocity = new Vector2(0f, 0f);
               firsttouch = false;

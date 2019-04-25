@@ -7,6 +7,7 @@ public class Bullet : MonoBehaviour
 {
     public Text score_Text;
     Game game;
+    public Sprite spr_brick2, spr_brick1;
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +37,7 @@ public class Bullet : MonoBehaviour
             if (collision.gameObject.GetComponent<SpriteRenderer>().enabled == false)
             {
                 collision.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+                Destroy(gameObject);
             }
             else
             {
@@ -47,11 +49,18 @@ public class Bullet : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("3rd_brick"))
         {
-           
-          
-
-
+            collision.gameObject.transform.tag = "2rd_brick";
+            collision.gameObject.GetComponent<SpriteRenderer>().sprite = spr_brick2;
         }
+        else if (collision.gameObject.CompareTag("2rd_brick"))
+        {
+            collision.gameObject.tag = "1rd_brick";
+            collision.gameObject.GetComponent<SpriteRenderer>().sprite = spr_brick1;
+        } 
+        else if (collision.gameObject.CompareTag("1rd_brick"))
+        {
+            Destroy(collision.gameObject);
+        }      
     }
 
 }
