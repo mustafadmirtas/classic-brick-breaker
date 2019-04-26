@@ -25,7 +25,7 @@ public class Game : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         rb.velocity = new Vector2(0, 0);
         point = int.Parse(score_Text.text);
-        balltype = 1;
+        balltype = 0;
         sticktype = 0;
         button_nextlevel.onClick.AddListener(SonrakiBolum);
         ad = new AdManager();

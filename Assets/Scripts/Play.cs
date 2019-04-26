@@ -240,11 +240,12 @@ public class Play : MonoBehaviour
         }
         GameObject[] gameObjects2;
         gameObjects2 = GameObject.FindGameObjectsWithTag("inv_brick");
-        if (gameObjects2 != null) { 
+        if (gameObjects2.Length != 0) {
+            i = 0;
         for (int i = 0; i < gameObjects.Length; i++)
         {
-            Collider2D col2 = gameObjects2[i].GetComponent<BoxCollider2D>();
-            col2.isTrigger = true;
+            Collider2D col3 = gameObjects2[i].GetComponent<BoxCollider2D>();
+            col3.isTrigger = true;
         }
         }
     }
