@@ -23,7 +23,7 @@ public class AdManager : MonoBehaviour
     }
     void Start()
     {
-        Advertisement.Initialize(store_id,true);
+        Advertisement.Initialize(store_id,false);
        
     }
 

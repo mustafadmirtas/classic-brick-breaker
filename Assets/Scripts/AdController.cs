@@ -6,7 +6,7 @@ public class AdController : MonoBehaviour
 {
     public static AdController instance;
     public string bannerPlacement = "banner";
-    public bool testMode = true;
+    public bool testMode = false;
     private string gameID = "3092650";
     // Start is called before the first frame update
     private void Awake()
