@@ -43,7 +43,7 @@ public class Lang : MonoBehaviour
             buttons[1].image.sprite = en[1];
             buttons[2].image.sprite = en[2];
             image_lvl.sprite = en[3];
-            image_lvl.rectTransform.localScale = new Vector3(1, 1);
+            image_lvl.rectTransform.localScale = new Vector3(1, 1.5f);
         }
     }
     void SelectLang(int a)

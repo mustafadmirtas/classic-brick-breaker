@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class Game : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public GameObject gameObject,stick,levelComp;
+    public GameObject gameObject,stick,levelComp,soundManager;
     public Collision2D collision2;
     public int point;
     int balltype,sticktype,a;
@@ -18,7 +18,7 @@ public class Game : MonoBehaviour
     public Button button_nextlevel;
     AdManager ad;
     public Text[] texts = new Text[10];
-
+    SoundScript soundScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +30,7 @@ public class Game : MonoBehaviour
         button_nextlevel.onClick.AddListener(SonrakiBolum);
         ad = new AdManager();
         LangCheck();
-      
+        soundScript = soundManager.GetComponent<SoundScript>();
     }
     private void FixedUpdate()
     {
@@ -43,6 +43,7 @@ public class Game : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Collider2D collider = collision.collider;
+        
         if (collision.gameObject.CompareTag("cubuk")) // if tag with cubuk
         {
 
@@ -76,7 +77,7 @@ public class Game : MonoBehaviour
                 {
                     Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
                     Destroy(collision.gameObject);
-                    puanEkle(10);
+                    puanEkle(50);
                     isThisEnd();
                     ItemCreate(vector2);
                 }
@@ -95,7 +96,11 @@ public class Game : MonoBehaviour
             }
             else if (collision.gameObject.CompareTag("1rd_brick"))
             {
+                Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
                 Destroy(collision.gameObject);
+                puanEkle(50);
+                isThisEnd();
+                ItemCreate(vector2);
             }
         }
         if (balltype == 1) // that means ball have fire power and when tag with tas(brick) it explode and destroy near bricks to.
@@ -122,6 +127,47 @@ public class Game : MonoBehaviour
             isThisEnd();
             ItemCreate(vector2);
         }
+        if (collision.gameObject.CompareTag("inv_brick"))
+        {
+            Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            Destroy(collision.gameObject);
+            puanEkle(50);
+            isThisEnd();
+            ItemCreate(vector2);
+        }
+        if (collision.gameObject.CompareTag("3rd_brick"))
+        {
+            Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            Destroy(collision.gameObject);
+            puanEkle(100);
+            isThisEnd();
+            ItemCreate(vector2);
+        }
+        if (collision.gameObject.CompareTag("2rd_brick"))
+        {
+            Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            Destroy(collision.gameObject);
+            puanEkle(100);
+            isThisEnd();
+            ItemCreate(vector2);
+        }
+        if (collision.gameObject.CompareTag("1rd_brick"))
+        {
+            Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            Destroy(collision.gameObject);
+            puanEkle(100);
+            isThisEnd();
+            ItemCreate(vector2);
+        }
+        if (collision.gameObject.CompareTag("gold_brick"))
+        {
+            Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
+            Destroy(collision.gameObject);
+            puanEkle(100);
+            isThisEnd();
+            ItemCreate(vector2);
+        }
+
     }
     public void puanEkle(int a) // add point 
     {
@@ -168,9 +214,13 @@ public class Game : MonoBehaviour
     void isThisEnd()
     {
         // look scene find object with tag which is tas(brick) if there is no tas finish game
-        GameObject[] taslar;
+        GameObject[] taslar,taslar2,taslar3,taslar4,taslar5;
         taslar = GameObject.FindGameObjectsWithTag("tas");
-        if(taslar.Length == 0)
+        taslar2 = GameObject.FindGameObjectsWithTag("inv_brick");
+        taslar3 = GameObject.FindGameObjectsWithTag("3rd_brick");
+        taslar4 = GameObject.FindGameObjectsWithTag("2rd_brick");
+        taslar5 = GameObject.FindGameObjectsWithTag("1rd_brick");
+        if (taslar.Length == 0 && taslar2.Length == 0 && taslar3.Length == 0 && taslar4.Length == 0 && taslar5.Length == 0)
         {
             Time.timeScale = 0;
             levelComp.SetActive(true);
@@ -188,7 +238,7 @@ public class Game : MonoBehaviour
        
     }
     public void setBallType()
-    {
+    {        
         balltype = 1;
     }
     public void SonrakiBolum() // Go back scene which selecting levels

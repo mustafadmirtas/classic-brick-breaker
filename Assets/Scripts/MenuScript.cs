@@ -23,15 +23,12 @@ public class MenuScript : MonoBehaviour
         {
             button.onClick.AddListener(() => { SelectLevel(button.GetComponentInChildren<Text>().text); });
         }
-        if((PlayerPrefs.GetInt("Level", 0)) == 1){
-            play_panel();
-        }
-        OpenLevels();
+        
         if ((PlayerPrefs.GetInt("Lang", 0)) == 0)
         {
             panel_lang.SetActive(true);
-        }
-        print(PlayerPrefs.GetInt("Comp_Levels").ToString());
+        }  
+        OpenLevels();
     }
 
     // Update is called once per frame
@@ -63,7 +60,7 @@ public class MenuScript : MonoBehaviour
     }
     void OpenLevels()
     {
-        int a = PlayerPrefs.GetInt("Comp_Levels", 1);
+        int a = PlayerPrefs.GetInt("Comp_Levels",1);
         for(int i = 0; i< a; i++)
         {
             buttons2[i].interactable = true;

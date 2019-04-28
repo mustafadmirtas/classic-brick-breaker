@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using System.Linq;
 public class Play : MonoBehaviour
 {
     public GameObject gameObject,ball,weapon1,weapon2,weapon3,weapon4,bullet,soundManager;
@@ -27,7 +27,6 @@ public class Play : MonoBehaviour
         stick_size = 0;
         stick_type = 0;
         soundScript = soundManager.GetComponent<SoundScript>();
-        PlayerPrefs.DeleteAll();
     }
 
     // Update is called once per frame
@@ -231,23 +230,26 @@ public class Play : MonoBehaviour
     }
     void through()
     {
-        GameObject[] gameObjects;
-        gameObjects = GameObject.FindGameObjectsWithTag("tas");
-        for(int i = 0; i < gameObjects.Length; i++)
+        GameObject[] bricks, inv_bricks, bricks2, bricks3,bricks4, bricks5;
+        bricks = GameObject.FindGameObjectsWithTag("tas");
+        inv_bricks = GameObject.FindGameObjectsWithTag("inv_brick");
+        bricks2 = GameObject.FindGameObjectsWithTag("3rd_brick");
+        bricks3 = GameObject.FindGameObjectsWithTag("2rd_brick");
+        bricks4 = GameObject.FindGameObjectsWithTag("1rd_brick");
+        bricks5 = GameObject.FindGameObjectsWithTag("gold_brick");
+        GameObject[] all = bricks.Concat(inv_bricks).ToArray();
+        all = bricks.Concat(bricks2).ToArray();
+        all = bricks.Concat(bricks3).ToArray();
+        all = bricks.Concat(bricks4).ToArray();
+        all = bricks.Concat(bricks5).ToArray();
+        for (int i = 0; i < all.Length; i++)
         {
-            Collider2D col2 = gameObjects[i].GetComponent<BoxCollider2D>();
+            Collider2D col2 = all[i].GetComponent<BoxCollider2D>();
             col2.isTrigger = true;
         }
-        GameObject[] gameObjects2;
-        gameObjects2 = GameObject.FindGameObjectsWithTag("inv_brick");
-        if (gameObjects2.Length != 0) {
-            i = 0;
-        for (int i = 0; i < gameObjects.Length; i++)
-        {
-            Collider2D col3 = gameObjects2[i].GetComponent<BoxCollider2D>();
-            col3.isTrigger = true;
-        }
-        }
+
+        
+     
     }
 
     public void CreateBall()

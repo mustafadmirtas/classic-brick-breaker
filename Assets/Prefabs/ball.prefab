@@ -119,6 +119,8 @@ MonoBehaviour:
   gameObject: {fileID: 2252108290755990412}
   stick: {fileID: 8901536030191591232, guid: 67a8bfd118a45004eb6fa3fa9cecaba7, type: 3}
   levelComp: {fileID: 0}
+  soundManager: {fileID: 5479290377174053650, guid: a1d6814b69c350c488684977ed0e407c,
+    type: 3}
   point: 0
   score_Text: {fileID: 0}
   zaman_Text: {fileID: 0}
@@ -133,7 +135,7 @@ MonoBehaviour:
   - {fileID: 426198353468133482, guid: 91b6a956b1057014687854f398a5574a, type: 3}
   - {fileID: 1569927988307093307, guid: 139280092adcab345bf8bfda3b0f24b0, type: 3}
   - {fileID: 7753399748598815813, guid: 2a3990b9525b99142ace2847f4cc39bb, type: 3}
-  button: {fileID: 0}
+  button_nextlevel: {fileID: 0}
   texts:
   - {fileID: 0}
   - {fileID: 0}

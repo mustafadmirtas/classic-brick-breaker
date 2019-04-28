@@ -44,9 +44,8 @@ public class Bullet : MonoBehaviour
                 Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
                 Destroy(collision.gameObject);
             }
-
-
         }
+
         if (collision.gameObject.CompareTag("3rd_brick"))
         {
             collision.gameObject.transform.tag = "2rd_brick";

@@ -205,6 +205,8 @@ MonoBehaviour:
   m_ChildForceExpandHeight: 1
   m_ChildControlWidth: 0
   m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
 --- !u!114 &8901536030191591242
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -224,6 +226,8 @@ MonoBehaviour:
   weapon3: {fileID: 8901536028482304778}
   weapon4: {fileID: 8901536029217380377}
   bullet: {fileID: 6958948757712958311, guid: b407c0545e87b8f40babc193b3e28577, type: 3}
+  soundManager: {fileID: 5479290377174053650, guid: a1d6814b69c350c488684977ed0e407c,
+    type: 3}
   rigidbody: {fileID: 8901536030191591237}
   ball_rb: {fileID: 2252108290755990415, guid: 5737059fb28c0684dad44bbdde1d1966, type: 3}
   spr: {fileID: 21300000, guid: caa4a96ed20687a4981c69d4b2d6f440, type: 3}
