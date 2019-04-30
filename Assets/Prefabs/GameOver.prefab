@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5041902996991456352}
   - component: {fileID: 785978804839858435}
   - component: {fileID: 8444000495740934601}
+  - component: {fileID: 9120834051681453975}
   m_Layer: 0
   m_Name: GameOver
   m_TagString: Untagged
@@ -81,3 +82,15 @@ MonoBehaviour:
   quit_button: {fileID: 0}
   text: {fileID: 0}
   text2: {fileID: 0}
+--- !u!114 &9120834051681453975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8444000495740934600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d956238395760ff4eb06402cb2fb2977, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

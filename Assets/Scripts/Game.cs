@@ -16,7 +16,6 @@ public class Game : MonoBehaviour
     public Sprite spr,spr2,tp_spr,spr_brick2,spr_brick1;
     public GameObject[] luck_spec;
     public Button button_nextlevel;
-    AdManager ad;
     public Text[] texts = new Text[10];
     SoundScript soundScript;
     // Start is called before the first frame update
@@ -28,7 +27,6 @@ public class Game : MonoBehaviour
         balltype = 0;
         sticktype = 0;
         button_nextlevel.onClick.AddListener(SonrakiBolum);
-        ad = new AdManager();
         LangCheck();
         soundScript = soundManager.GetComponent<SoundScript>();
     }
@@ -227,7 +225,7 @@ public class Game : MonoBehaviour
             int a = SceneManager.GetActiveScene().buildIndex;
             if(a%4 == 0)
             {
-                    ad.Video_Ads();
+                //    ad.Video_Ads();
             }
             if(PlayerPrefs.GetInt("Comp_Levels") <= SceneManager.GetActiveScene().buildIndex)
             {
