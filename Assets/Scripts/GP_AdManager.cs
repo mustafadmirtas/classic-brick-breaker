@@ -3,18 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using GoogleMobileAds.Api;
 using System;
+using UnityEngine.SceneManagement;
 
 public class GP_AdManager : MonoBehaviour
 {
     public static GP_AdManager instance;
     private BannerView bannerAD;
-
+    private InterstitialAd interstitialAD;
+    private RewardBasedVideoAd rewardVideoAD;
     public void Start()
-    {       
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            if (instance != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+        }
         string appId = "ca-app-pub-3940256099942544~3347511713le";
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize(appId);
         RequestBanner();
+        InterstitialRequest();
+        RewardedAdsRequest();
     }
 
     private void RequestBanner()
@@ -41,5 +57,105 @@ public class GP_AdManager : MonoBehaviour
     {
         RequestBanner();
     }
+    private void InterstitialRequest()
+    {
+
+        string ins_ID = "ca-app-pub-3940256099942544/1033173712";
+
+        // Create a 320x50 banner at the top of the screen.
+        interstitialAD = new InterstitialAd(ins_ID);
+
+        AdRequest request = new AdRequest.Builder().Build();
+
+        // Load the banner with the request.
+        interstitialAD.LoadAd(request);
+    }
+    private void RewardedAdsRequest()
+    {
+
+        string video_ID = "ca-app-pub-3940256099942544/5224354917";
+        // Create a 320x50 banner at the top of the screen.
+        rewardVideoAD = RewardBasedVideoAd.Instance;
+
+        AdRequest request = new AdRequest.Builder().Build();
+
+        // Load the banner with the request.
+        rewardVideoAD.LoadAd(request, video_ID);
+    }
+
+    public void Display_InsterstitialAD()
+    {
+        if (interstitialAD.IsLoaded())
+        {
+            interstitialAD.Show();
+        }
+    }
+    public void Display_Reward_Video()
+    {
+        if (rewardVideoAD.IsLoaded())
+        {
+            rewardVideoAD.Show();
+        }
+    }
+
+
+    public void HandleOnAdOpened(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleAdOpened event received");
+    }
+
+    public void HandleOnAdClosed(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleAdClosed event received");
+    }
+
+    public void HandleOnAdLeavingApplication(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleAdLeavingApplication event received");
+    }
+
+    //
+
+    public void HandleRewardBasedVideoLoaded(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleRewardBasedVideoLoaded event received");
+    }
+
+    public void HandleRewardBasedVideoFailedToLoad(object sender, AdFailedToLoadEventArgs args)
+    {
+        MonoBehaviour.print(
+            "HandleRewardBasedVideoFailedToLoad event received with message: "
+                             + args.Message);
+    }
+
+    public void HandleRewardBasedVideoOpened(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleRewardBasedVideoOpened event received");
+    }
+
+    public void HandleRewardBasedVideoStarted(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleRewardBasedVideoStarted event received");
+    }
+
+    public void HandleRewardBasedVideoClosed(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleRewardBasedVideoClosed event received");
+    }
+
+    public void HandleRewardBasedVideoRewarded(object sender, Reward args)
+    {
+        string type = args.Type;
+        double amount = args.Amount;
+        MonoBehaviour.print(
+            "HandleRewardBasedVideoRewarded event received for "
+                        + amount.ToString() + " " + type);
+    }
+
+    public void HandleRewardBasedVideoLeftApplication(object sender, EventArgs args)
+    {
+        MonoBehaviour.print("HandleRewardBasedVideoLeftApplication event received");
+    }
+  
 }
 

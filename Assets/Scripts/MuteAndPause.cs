@@ -2,16 +2,37 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MuteAndPause : MonoBehaviour
 {
+    public static MuteAndPause instance;
+    public GameObject levelComp;
     public Button button_mute, button_pause;
     public Sprite mute, no_mute, pause, play;
     bool pauser = false, muter = false;
     // Start is called before the first frame update
     void Start()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            if (instance != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+
+            gameObject.SetActive(true);
+
+        }
         button_mute.onClick.AddListener(mute_sound);
         button_pause.onClick.AddListener(pause_play);
     }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2252108290755990408}
   m_Layer: 0
   m_Name: ball
-  m_TagString: Untagged
+  m_TagString: ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,9 +116,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 2252108290755990415}
-  gameObject: {fileID: 2252108290755990412}
   stick: {fileID: 8901536030191591232, guid: 67a8bfd118a45004eb6fa3fa9cecaba7, type: 3}
-  levelComp: {fileID: 0}
+  levelComp: {fileID: 3116940498132994912, guid: 18da7c376d286c34c9a5c4fb59089874,
+    type: 3}
   soundManager: {fileID: 5479290377174053650, guid: a1d6814b69c350c488684977ed0e407c,
     type: 3}
   point: 0
@@ -127,15 +127,15 @@ MonoBehaviour:
   spr: {fileID: 21300000, guid: caa4a96ed20687a4981c69d4b2d6f440, type: 3}
   spr2: {fileID: 21300000, guid: 9cd5796a3db57e647a9cd74dd7a8b7bd, type: 3}
   tp_spr: {fileID: 21300000, guid: db38384af5ed75b46aade07fe7d7a0e7, type: 3}
-  spr_brick2: {fileID: 0}
-  spr_brick1: {fileID: 0}
+  spr_brick2: {fileID: 21300000, guid: 3f761de427b55b244815d18bbb090b10, type: 3}
+  spr_brick1: {fileID: 21300000, guid: 02d278e9cc326ae41824107cbc4b93b1, type: 3}
   luck_spec:
   - {fileID: 4541285401391103199, guid: 28f2a411d69752542a0066168d6a9040, type: 3}
   - {fileID: 8477863176580447518, guid: 0509f2f9c8b577f4e8a505de5f7686f7, type: 3}
   - {fileID: 426198353468133482, guid: 91b6a956b1057014687854f398a5574a, type: 3}
   - {fileID: 1569927988307093307, guid: 139280092adcab345bf8bfda3b0f24b0, type: 3}
   - {fileID: 7753399748598815813, guid: 2a3990b9525b99142ace2847f4cc39bb, type: 3}
-  button_nextlevel: {fileID: 0}
+  - {fileID: 5061478237796862082, guid: 02c1292b4599da5439884ac2c9a76a3a, type: 3}
   texts:
   - {fileID: 0}
   - {fileID: 0}

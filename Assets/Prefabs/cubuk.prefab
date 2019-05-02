@@ -228,11 +228,29 @@ MonoBehaviour:
   bullet: {fileID: 6958948757712958311, guid: b407c0545e87b8f40babc193b3e28577, type: 3}
   soundManager: {fileID: 5479290377174053650, guid: a1d6814b69c350c488684977ed0e407c,
     type: 3}
+  levelComp: {fileID: 0}
   rigidbody: {fileID: 8901536030191591237}
   ball_rb: {fileID: 2252108290755990415, guid: 5737059fb28c0684dad44bbdde1d1966, type: 3}
+  score_Text: {fileID: 0}
+  zaman_Text: {fileID: 0}
+  texts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   spr: {fileID: 21300000, guid: caa4a96ed20687a4981c69d4b2d6f440, type: 3}
   spr2: {fileID: 21300000, guid: 9cd5796a3db57e647a9cd74dd7a8b7bd, type: 3}
   tp_spr: {fileID: 21300000, guid: db38384af5ed75b46aade07fe7d7a0e7, type: 3}
+  normal_stick: {fileID: 21300000, guid: 975c4dd6c46042f4a897c50cbc35fe50, type: 3}
+  normal_ball: {fileID: 21300000, guid: 350aacad64fa23f469366225b5803a24, type: 3}
+  button_nextlevel: {fileID: 0}
+  button_quit: {fileID: 0}
 --- !u!50 &8901536030191591237
 Rigidbody2D:
   serializedVersion: 4

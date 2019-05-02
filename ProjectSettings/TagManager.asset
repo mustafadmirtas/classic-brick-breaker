@@ -22,6 +22,10 @@ TagManager:
   - 3rd_brick
   - 2rd_brick
   - 1rd_brick
+  - adsmanager
+  - audiosource
+  - canvas
+  - gameover
   layers:
   - Default
   - TransparentFX

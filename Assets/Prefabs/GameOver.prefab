@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5041902996991456352}
   - component: {fileID: 785978804839858435}
   - component: {fileID: 8444000495740934601}
-  - component: {fileID: 9120834051681453975}
   m_Layer: 0
   m_Name: GameOver
   m_TagString: Untagged
@@ -71,26 +70,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0f5736d965c78b499132333bb198be7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameOver: {fileID: 0}
-  ball: {fileID: 0}
-  adManagers: {fileID: 0}
-  image1: {fileID: 0}
-  image2: {fileID: 0}
-  soundManager: {fileID: 0}
+  gameOver: {fileID: 6784730258784525977, guid: 08af9c8144f4c3a4490c18729f4e47ea,
+    type: 3}
+  ball: {fileID: 2252108290755990412, guid: 5737059fb28c0684dad44bbdde1d1966, type: 3}
+  adManagers: {fileID: 7354161746503999533, guid: 381b7a339972f454c9a6c8567cdc2f59,
+    type: 3}
+  image1: {fileID: 1560665787152063346, guid: 409fb187fc1fcba418dfad017dd1573a, type: 3}
+  image2: {fileID: 1009314570651415383, guid: 3263cc4450f30b3428e5fc8cdf4c7050, type: 3}
+  soundManager: {fileID: 5479290377174053650, guid: a1d6814b69c350c488684977ed0e407c,
+    type: 3}
   tryagain_button: {fileID: 0}
   cont_ads_button: {fileID: 0}
   quit_button: {fileID: 0}
   text: {fileID: 0}
   text2: {fileID: 0}
---- !u!114 &9120834051681453975
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8444000495740934600}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d956238395760ff4eb06402cb2fb2977, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

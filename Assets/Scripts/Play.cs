@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
 public class Play : MonoBehaviour
 {
-    public GameObject gameObject,ball,weapon1,weapon2,weapon3,weapon4,bullet,soundManager;
+    public static Play instance;
+    public GameObject ball,weapon1,weapon2,weapon3,weapon4,bullet,soundManager,levelComp;
     public Rigidbody2D rigidbody,ball_rb;
     Vector2 vector = new Vector2(5, 0);
     float maxSpeed = 10f;
@@ -13,25 +17,46 @@ public class Play : MonoBehaviour
     Vector2 position;
     Game game;
     static bool firsttouch;
-    public Sprite spr, spr2, tp_spr;
+    public Text[] texts = new Text[10];
+    public Sprite spr, spr2, tp_spr,normal_stick,normal_ball;
     SoundScript soundScript;
+    public Button button_nextlevel, button_quit;
+    GameObject go;
     // Start is called before the first frame update
     void Start()
     {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            if (instance != null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+        }
+        button_nextlevel.onClick.AddListener(SonrakiBolum);
+        button_quit.onClick.AddListener(Cikis);
         rigidbody = GetComponent<Rigidbody2D>();
-        width = (float)Screen.width ;
-        height = (float)Screen.height;    
-        game = ball.GetComponent<Game>();
+        game = new Game();
         Time.timeScale = 1;
         firsttouch = false;
         stick_size = 0;
         stick_type = 0;
         soundScript = soundManager.GetComponent<SoundScript>();
+        GameObject go = GameObject.FindGameObjectWithTag("ball");
+        if (go == null)
+        {
+            Instantiate(ball, new Vector2(0f, -2.32f), Quaternion.identity);
+        }
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if(SceneManager.GetActiveScene().buildIndex > 0) { 
         // if player have gun skills, call fire function when given delay pass
         if (stick_type > 0)
         {
@@ -45,12 +70,16 @@ public class Play : MonoBehaviour
         // after this touch every touch changes stick position to touch position x.
         if (Input.touchCount > 0)
         {
+            
+            if (go == null)
+            {
+                Instantiate(ball, new Vector2(0f, -2.32f), Quaternion.identity);
+            }
             if (firsttouch == false)
             {
-                GameObject go = GameObject.FindGameObjectWithTag("ball");
                 Rigidbody2D r2d = go.GetComponent<Rigidbody2D>();
                 Time.timeScale = 1;
-                r2d.velocity = new Vector2(0, 6f);
+                r2d.velocity = new Vector2(0, 5f);
                 firsttouch = true;
             }
             Touch touch = Input.GetTouch(0);
@@ -64,25 +93,34 @@ public class Play : MonoBehaviour
         }
        float move = Input.GetAxis("Horizontal");
 
-        rigidbody.velocity = new Vector2(move * maxSpeed, rigidbody.velocity.y);
+       rigidbody.velocity = new Vector2(move * maxSpeed, rigidbody.velocity.y);
 
         if (Input.GetMouseButton(0))
         {
-            if (firsttouch == false)
+            Time.timeScale = 1;
+            if (SceneManager.GetActiveScene().buildIndex > 0)
             {
-                GameObject go = GameObject.FindGameObjectWithTag("ball");
-                Rigidbody2D r2d = go.GetComponent<Rigidbody2D>();
-                Time.timeScale = 1;
-                r2d.velocity = new Vector2(0, 7f);
-                firsttouch = true;
-
+                    GameObject go = GameObject.FindGameObjectWithTag("ball");
+                    if (go == null)
+                    {
+                        Instantiate(ball, new Vector2(0f, -2.32f), Quaternion.identity);
+                    }
+                    if (firsttouch == false)
+                    {
+                        
+                        Rigidbody2D r2d = go.GetComponent<Rigidbody2D>();
+                        Time.timeScale = 1;
+                        r2d.velocity = new Vector2(0, 5f);
+                        firsttouch = true;
+                    }
+                    Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+                if (pos.y < 3.5f)
+                {
+                    position = new Vector2(-pos.x, pos.y);
+                    rigidbody.position = new Vector2(-position.x, -3.06f);
+                }
             }
-            Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            if (pos.y < 3.5f) {
-            position = new Vector2(-pos.x, pos.y);
-            rigidbody.position = new Vector2(-position.x, -3.06f);
-            }
-           
+        }
         }
     }
 
@@ -99,7 +137,7 @@ public class Play : MonoBehaviour
         {
             changeBall(tp_spr);
             Destroy(collision.gameObject);
-            game.setBallType();
+            Game.instance.setBallType();
         }
         if (collision.gameObject.CompareTag("gun")) // if stick tag with gun skill 
         {
@@ -177,13 +215,10 @@ public class Play : MonoBehaviour
     void changeBall(Sprite tp_spr)
     {
         GameObject[] balls = GameObject.FindGameObjectsWithTag("ball");
-
         foreach (GameObject ball in balls)
         {
-            ball.GetComponent<SpriteRenderer>().sprite = tp_spr;  
-        }
-
-           
+            ball.GetComponent<SpriteRenderer>().sprite = tp_spr; 
+        }         
     }
     void startFire()
     {
@@ -197,7 +232,7 @@ public class Play : MonoBehaviour
             Rigidbody2D r3d = go3.GetComponent<Rigidbody2D>();
             r2d.velocity = new Vector2(0, 4f);
             r3d.velocity = new Vector2(0, 4f);
-            soundScript.PlaySound(2);
+            SoundScript.instance.PlaySound(2);
             Destroy(r2d, 5f);
             Destroy(r3d, 5f);
 
@@ -220,7 +255,7 @@ public class Play : MonoBehaviour
             r2d.velocity = new Vector2(0, 4f);
             r3d.velocity = new Vector2(0, 4f);
             r4d.velocity = new Vector2(0, 4f);
-            soundScript.PlaySound(2);
+            SoundScript.instance.PlaySound(2);
             Destroy(r1d, 5f);
             Destroy(r2d, 5f);
             Destroy(r3d, 5f);
@@ -247,22 +282,78 @@ public class Play : MonoBehaviour
             Collider2D col2 = all[i].GetComponent<BoxCollider2D>();
             col2.isTrigger = true;
         }
-
-        
-     
     }
-
     public void CreateBall()
-        {
+    {
               GameObject go = GameObject.FindGameObjectWithTag("ball");
               go.transform.position = new Vector2(0f, -2.32f);
               Rigidbody2D r2d = go.GetComponent<Rigidbody2D>();
               r2d.velocity = new Vector2(0f, 0f);
               firsttouch = false;
+              stick_type = 0;
+    }
+    int zamanYaz()
+    {
+        // return time seconds
+        float time =Time.time;
+        int saniye = (int) time;
+        return saniye;
+    }
+    void LangCheck()
+    {
+        if (PlayerPrefs.GetInt("Lang", 1) == 1)
+        {
+            texts[0].text = "Skor :";
+            texts[1].text = "Tebrikler";
+            texts[2].text = "Bölümü Tamamladınız";
+            texts[3].text = "Sonraki Bölüme Geç";
+            texts[4].text = "Oyun Bitti";
+            texts[5].text = "Tekrar Deneyin";
+            texts[6].text = "Skorunuz";
+            texts[7].text = "Tekrar Dene";
+            texts[8].text = "Reklam İle Devam Et";
+            texts[9].text = "Çıkış";
+            texts[10].text = "Çıkış";
         }
+        if (PlayerPrefs.GetInt("Lang", 1) == 2)
+        {
+            texts[0].text = "Score :";
+            texts[1].text = "Congrats!";
+            texts[2].text = "Level Completed";
+            texts[3].text = "Next Level";
+            texts[4].text = "Game Over";
+            texts[5].text = "Try Again";
+            texts[6].text = "Your Score";
+            texts[7].text = "Try Again";
+            texts[8].text = "Continue with Ads";
+            texts[9].text = "Exit";
+            texts[10].text = "Exit";
 
-
-
+        }
+    }
+    public void SonrakiBolum() // Go back scene which selecting levels
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        levelComp.SetActive(false);
+        CreateBall();
+        ResetBall();
+        ResetStick();
+        Time.timeScale = 1;
+    }
+    public void Cikis() // Go back scene which selecting levels
+    {
+        SceneManager.LoadScene(0);
+    }
+    void ResetBall()
+    {
+        GameObject ball = GameObject.FindGameObjectWithTag("ball");
+        ball.GetComponent<SpriteRenderer>().sprite = normal_ball;
+    }
+    void ResetStick()
+    {
+        gameObject.GetComponent<SpriteRenderer>().sprite = normal_stick;
+        gameObject.transform.localScale = new Vector3(0.3974734f, 0.8222171f, 0.8222171f);
+    }
 }
 
 

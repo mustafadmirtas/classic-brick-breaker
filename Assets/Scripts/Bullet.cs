@@ -11,8 +11,7 @@ public class Bullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
-        
+        game = new Game();
     }
 
     // Update is called once per frame
@@ -26,10 +25,10 @@ public class Bullet : MonoBehaviour
         if(collision.CompareTag("tas")){
             Destroy(collision.gameObject);
             Destroy(gameObject);
+            Game.instance.isThisEnd();
         }
         if (collision.CompareTag("gold_brick"))
         {
-            
             Destroy(gameObject);
         }
         if (collision.gameObject.CompareTag("inv_brick"))
@@ -38,11 +37,14 @@ public class Bullet : MonoBehaviour
             {
                 collision.gameObject.GetComponent<SpriteRenderer>().enabled = true;
                 Destroy(gameObject);
+                
             }
             else
             {
                 Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
                 Destroy(collision.gameObject);
+                Game.instance.isThisEnd();
+
             }
         }
 
@@ -59,7 +61,8 @@ public class Bullet : MonoBehaviour
         else if (collision.gameObject.CompareTag("1rd_brick"))
         {
             Destroy(collision.gameObject);
+            Game.instance.isThisEnd();
         }      
     }
-
+    
 }
