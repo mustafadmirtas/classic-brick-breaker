@@ -24,6 +24,10 @@ public class MenuScript : MonoBehaviour
             button.onClick.AddListener(() => { SelectLevel(button.GetComponentInChildren<Text>().text); });
         }
         
+        if(PlayerPrefs.GetInt("Lang", 0) == 0)
+        {
+            panel_lang.SetActive(true);
+        }
 
         OpenLevels();
     }

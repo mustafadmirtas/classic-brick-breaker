@@ -70,25 +70,32 @@ public class Play : MonoBehaviour
         // after this touch every touch changes stick position to touch position x.
         if (Input.touchCount > 0)
         {
-            
-            if (go == null)
-            {
-                Instantiate(ball, new Vector2(0f, -2.32f), Quaternion.identity);
-            }
-            if (firsttouch == false)
-            {
-                Rigidbody2D r2d = go.GetComponent<Rigidbody2D>();
+
                 Time.timeScale = 1;
-                r2d.velocity = new Vector2(0, 5f);
-                firsttouch = true;
-            }
-            Touch touch = Input.GetTouch(0);
-            if(touch.phase == TouchPhase.Moved)
-            {
-                Vector2 pos = Camera.main.ScreenToWorldPoint(touch.position);  
-                position = new Vector2(-pos.x, pos.y);
-                rigidbody.position = new Vector2(-position.x, -3.06f);
-            }
+                if (SceneManager.GetActiveScene().buildIndex > 0)
+                {
+                    GameObject go = GameObject.FindGameObjectWithTag("ball");
+                    if (go == null)
+                    {
+                        Instantiate(ball, new Vector2(0f, -2.32f), Quaternion.identity);
+                    }
+                    if (firsttouch == false)
+                    {
+
+                        Rigidbody2D r2d = go.GetComponent<Rigidbody2D>();
+                        Time.timeScale = 1;
+                        r2d.velocity = new Vector2(0, 5f);
+                        firsttouch = true;
+                    }
+                    Touch touch = Input.GetTouch(0);
+                    if (touch.phase == TouchPhase.Moved)
+                    {
+                        Vector2 pos = Camera.main.ScreenToWorldPoint(touch.position);
+                        position = new Vector2(-pos.x, pos.y);
+                        rigidbody.position = new Vector2(-position.x, -3.06f);
+                    }
+                }
+         
            
         }
        float move = Input.GetAxis("Horizontal");
@@ -137,7 +144,7 @@ public class Play : MonoBehaviour
         {
             changeBall(tp_spr);
             Destroy(collision.gameObject);
-            Game.instance.setBallType();
+            Game.instance.setBallType(1);
         }
         if (collision.gameObject.CompareTag("gun")) // if stick tag with gun skill 
         {
@@ -343,16 +350,20 @@ public class Play : MonoBehaviour
     public void Cikis() // Go back scene which selecting levels
     {
         SceneManager.LoadScene(0);
+        Time.timeScale = 0;
     }
-    void ResetBall()
+    public void ResetBall()
     {
         GameObject ball = GameObject.FindGameObjectWithTag("ball");
         ball.GetComponent<SpriteRenderer>().sprite = normal_ball;
+        Game.instance.setBallType(0);
     }
-    void ResetStick()
+    public void ResetStick()
     {
         gameObject.GetComponent<SpriteRenderer>().sprite = normal_stick;
         gameObject.transform.localScale = new Vector3(0.3974734f, 0.8222171f, 0.8222171f);
+        stick_size = 0;
+        stick_type = 0;
     }
 }
 

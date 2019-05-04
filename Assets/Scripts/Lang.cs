@@ -34,16 +34,14 @@ public class Lang : MonoBehaviour
             buttons[0].image.sprite = tr[0];
             buttons[1].image.sprite = tr[1];
             buttons[2].image.sprite = tr[2];
-            image_lvl.sprite = tr[3];
-            image_lvl.rectTransform.localScale = new Vector3(1,2);
+
         }
         if (PlayerPrefs.GetInt("Lang", 1) == 2)
         {
             buttons[0].image.sprite = en[0];
             buttons[1].image.sprite = en[1];
             buttons[2].image.sprite = en[2];
-            image_lvl.sprite = en[3];
-            image_lvl.rectTransform.localScale = new Vector3(1, 1.5f);
+
         }
     }
     void SelectLang(int a)

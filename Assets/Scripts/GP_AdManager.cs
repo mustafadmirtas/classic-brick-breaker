@@ -29,8 +29,23 @@ public class GP_AdManager : MonoBehaviour
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize(appId);
         RequestBanner();
-        InterstitialRequest();
-        RewardedAdsRequest();
+        rewardVideoAD = RewardBasedVideoAd.Instance;      
+        // Called when an ad request has successfully loaded.
+        rewardVideoAD.OnAdLoaded += HandleRewardBasedVideoLoaded;
+        // Called when an ad request failed to load.
+        rewardVideoAD.OnAdFailedToLoad += HandleRewardBasedVideoFailedToLoad;
+        // Called when an ad is shown.
+        rewardVideoAD.OnAdOpening += HandleRewardBasedVideoOpened;
+        // Called when the ad starts to play.
+        rewardVideoAD.OnAdStarted += HandleRewardBasedVideoStarted;
+        // Called when the user should be rewarded for watching a video.
+        rewardVideoAD.OnAdRewarded += HandleRewardBasedVideoRewarded;
+        // Called when the ad is closed.
+        rewardVideoAD.OnAdClosed += HandleRewardBasedVideoClosed;
+        // Called when the ad click caused the user to leave the application.
+        rewardVideoAD.OnAdLeavingApplication += HandleRewardBasedVideoLeftApplication;
+        RequestInt();
+        RequestReward();
     }
 
     private void RequestBanner()
@@ -85,17 +100,33 @@ public class GP_AdManager : MonoBehaviour
 
     public void Display_InsterstitialAD()
     {
+      
         if (interstitialAD.IsLoaded())
         {
+           
             interstitialAD.Show();
+           
         }
+        else {
+            print("NotLoaded");
+            
+        }
+        
+       
     }
-    public void Display_Reward_Video()
+    public bool Display_Reward_Video()
     {
+        bool a;
         if (rewardVideoAD.IsLoaded())
         {
+            a = true;
             rewardVideoAD.Show();
         }
+        else {
+            a = false;
+            print("NotLoadedRWD");
+        }
+        return a;
     }
 
 
@@ -145,17 +176,23 @@ public class GP_AdManager : MonoBehaviour
 
     public void HandleRewardBasedVideoRewarded(object sender, Reward args)
     {
-        string type = args.Type;
-        double amount = args.Amount;
-        MonoBehaviour.print(
-            "HandleRewardBasedVideoRewarded event received for "
-                        + amount.ToString() + " " + type);
+        GameOver.instance.health = 1;
+        GameOver.instance.gameOver.SetActive(false);
+        Time.timeScale = 1;
+        Play.instance.CreateBall();
     }
 
     public void HandleRewardBasedVideoLeftApplication(object sender, EventArgs args)
     {
         MonoBehaviour.print("HandleRewardBasedVideoLeftApplication event received");
     }
-  
+    public void RequestInt()
+    {
+        InterstitialRequest();
+    }
+    public void RequestReward()
+    {
+        RewardedAdsRequest();
+    }
 }
 

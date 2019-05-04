@@ -123,29 +123,29 @@ public class Game : MonoBehaviour
         {
             Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
             Destroy(collision.gameObject);
-            isThisEnd();
             ItemCreate(vector2);
+            isThisEnd();
         }
         if (collision.gameObject.CompareTag("inv_brick"))
         {
             Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
             Destroy(collision.gameObject);
-            isThisEnd();
             ItemCreate(vector2);
+            isThisEnd();
         }
         if (collision.gameObject.CompareTag("3rd_brick"))
         {
             Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-            Destroy(collision.gameObject);
-            isThisEnd();
+            Destroy(collision.gameObject);        
             ItemCreate(vector2);
+            isThisEnd();
         }
         if (collision.gameObject.CompareTag("2rd_brick"))
         {
             Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
             Destroy(collision.gameObject);
-            isThisEnd();
             ItemCreate(vector2);
+            isThisEnd();
         }
         if (collision.gameObject.CompareTag("1rd_brick"))
         {
@@ -212,8 +212,8 @@ public class Game : MonoBehaviour
                 taslar = taslar.Concat(taslar4).ToArray();
             if (taslar4 != null)
                 taslar = taslar.Concat(taslar5).ToArray();
-            print(taslar.Length.ToString());
-        if (taslar.Length <= 1)
+            MuteAndPause.instance.brick_count.text = taslar.Length.ToString();
+        if (taslar.Length == 0)
         {
             MuteAndPause.instance.levelComp.SetActive(true);
             int a = SceneManager.GetActiveScene().buildIndex;
@@ -232,9 +232,9 @@ public class Game : MonoBehaviour
             
         }
     }
-    public void setBallType()
+    public void setBallType(int a)
     {        
-        balltype = 1;
+        balltype = a;
     }
    
     

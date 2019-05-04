@@ -9,9 +9,10 @@ public class MuteAndPause : MonoBehaviour
 {
     public static MuteAndPause instance;
     public GameObject levelComp;
-    public Button button_mute, button_pause;
+    public Button button_mute, button_pause,button_exit;
     public Sprite mute, no_mute, pause, play;
     bool pauser = false, muter = false;
+    public Text brick_count;
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +36,7 @@ public class MuteAndPause : MonoBehaviour
         }
         button_mute.onClick.AddListener(mute_sound);
         button_pause.onClick.AddListener(pause_play);
+        button_exit.onClick.AddListener(exit);
     }
 
     void pause_play()
@@ -72,7 +74,12 @@ public class MuteAndPause : MonoBehaviour
             AudioListener.pause = false;
         }
     }
-
+    void exit()
+    {
+        Time.timeScale = 0;
+        SceneManager.LoadScene(0);
+        
+    }
     // Update is called once per frame
     void Update()
     {

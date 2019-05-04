@@ -12,7 +12,7 @@ public class GameOver : MonoBehaviour
     public GameObject gameOver,ball,adManagers,image1,image2,soundManager;
     public Button tryagain_button,cont_ads_button,quit_button;
     public Text text,text2;
-    int health;
+    public int health;
     GP_AdManager gp;
     Game game;
     SoundScript sS;
@@ -43,6 +43,10 @@ public class GameOver : MonoBehaviour
         play = new Play();
         health = 2;
 
+        if(health == 0)
+        {
+            gameOver.SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -68,21 +72,26 @@ public class GameOver : MonoBehaviour
                     play.CreateBall();
                     image2.SetActive(false);
                     sS.PlaySound(0);
-                
+                    
                 }
                 else if(health == 1)
                 {
-                    gameOver.SetActive(true);
+                    
                     Time.timeScale = 0;
                     sS.PlaySound(0);
-                    if(PlayerPrefs.GetInt("GameOverCount", 0)== 3)
-                    {
+                    health -= 1;
+                    cont_ads_button.enabled = true;
+                    cont_ads_button.GetComponentInChildren<Text>().text = "Cont With Ads";
+                    if (PlayerPrefs.GetInt("GameOverCount", 0)== 3)
+                    {     
                         GP_AdManager.instance.Display_InsterstitialAD();
                         PlayerPrefs.SetInt("GameOverCount", 0);
+                        
                     }
                     else {
                         PlayerPrefs.SetInt("GameOverCount", PlayerPrefs.GetInt("GameOverCount", 0) + 1);
                     }
+                    gameOver.SetActive(true);
                 }
                 
             }
@@ -100,18 +109,33 @@ public class GameOver : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         gameOver.SetActive(false);
         Time.timeScale = 1;
+        health = 2;
+        Play.instance.ResetBall();
+        Play.instance.ResetStick();
         play.CreateBall();
     }
     void QuitGame()
     {
+        gameOver.SetActive(false);
         SceneManager.LoadScene(0);
     }
     void Cont_Ads()
     {
-            GP_AdManager.instance.Display_Reward_Video();
-            gameOver.SetActive(false);
-            Time.timeScale = 1;
-            play.CreateBall();
-    }
-    
+
+            if(GP_AdManager.instance.Display_Reward_Video() == false)
+            {
+               cont_ads_button.GetComponentInChildren<Text>().text = "Ads Not Found";
+               cont_ads_button.enabled = false;
+               GP_AdManager.instance.RequestReward();
+            }
+            else
+            { 
+               if(health > 0)
+                {
+                    gameOver.SetActive(false);
+                    Time.timeScale = 1;
+                    play.CreateBall();
+                }
+            }     
+    }  
 }

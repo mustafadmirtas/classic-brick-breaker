@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 2937720344062538951, guid: 4813eb2a8b5509140bcaee8f7dfc18d4,
         type: 3}
       propertyPath: m_Name
-      value: zbrick4 Variant
+      value: zbrick5
       objectReference: {fileID: 0}
     - target: {fileID: 4569356155803759197, guid: 4813eb2a8b5509140bcaee8f7dfc18d4,
         type: 3}
