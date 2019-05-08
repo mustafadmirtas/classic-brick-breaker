@@ -310,7 +310,7 @@ public class Play : MonoBehaviour
     }
     public void SonrakiBolum() // Go back scene which selecting levels
     {
-        if(SceneManager.GetActiveScene().buildIndex < 32) {
+        if(SceneManager.GetActiveScene().buildIndex < 31) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         levelComp.SetActive(false);
         CreateBall();
