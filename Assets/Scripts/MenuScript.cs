@@ -6,17 +6,18 @@ using UnityEngine.UI;
 
 public class MenuScript : MonoBehaviour
 {
-    public Button button_play, button_opt, button_quit, buttonback_menu;
+    public Button button_play, button_opt, button_quit, buttonback_menu,buttonquit_opt;
     public GameObject panel_play, panel_opt,panel_lang;
     public Button[] buttons2 = new Button[32];
     // Start is called before the first frame update
     Lang language;
     void Start()
     {
-        button_play.onClick.AddListener(play_panel);
-        buttonback_menu.onClick.AddListener(play_backmenu);
-        button_opt.onClick.AddListener(opt_panel);
-        button_quit.onClick.AddListener(quit_game);
+        button_play.onClick.AddListener(PlayPanel);
+        buttonback_menu.onClick.AddListener(PlayBackmenu);
+        button_opt.onClick.AddListener(OptPanel);
+        buttonquit_opt.onClick.AddListener(QuitOpt);
+        button_quit.onClick.AddListener(QuitGame);
         
         language = new Lang();
         foreach (Button button in buttons2)
@@ -37,35 +38,42 @@ public class MenuScript : MonoBehaviour
     {
      
     }
-    void play_panel()
+    void PlayPanel()
     {
         panel_play.SetActive(true);
     }
-    void play_backmenu()
+    void PlayBackmenu()
     {
         panel_play.SetActive(false);
     }
-    void quit_game()
+    void QuitGame()
     {
         Application.Quit();
     }
-    void opt_panel()
+    void OptPanel()
     {
-        panel_play.SetActive(true);
+        panel_opt.SetActive(true);
+    }
+    void QuitOpt()
+    {
+        panel_opt.SetActive(false);
     }
     void SelectLevel(string text)
     {
         
         int b = int.Parse(text);
         SceneManager.LoadScene(b);
+        gameObject.SetActive(false);
     }
     void OpenLevels()
     {
         int a = PlayerPrefs.GetInt("Comp_Levels",1);
+        
         for(int i = 0; i< a; i++)
         {
             buttons2[i].interactable = true;
         }
+        
     }
  
 

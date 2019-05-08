@@ -35,7 +35,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -312, y: 499}
+  m_AnchoredPosition: {x: -312, y: 460}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6837616903556284350
@@ -253,7 +253,7 @@ GameObject:
   - component: {fileID: 3725441739829526151}
   - component: {fileID: 7040634764572127686}
   m_Layer: 5
-  m_Name: LevelPass
+  m_Name: GameOver_Quit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 6625098928060806401}
   - component: {fileID: 5473503844002164665}
   m_Layer: 5
-  m_Name: LevelPass
+  m_Name: GameOver_ADS
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -514,7 +514,7 @@ RectTransform:
   - {fileID: 7988313631975283131}
   - {fileID: 8103828950566332481}
   - {fileID: 4499575506475885789}
-  - {fileID: 8070233282811624564}
+  - {fileID: 4953575550334171034}
   - {fileID: 4953575550529532630}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -615,10 +615,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 45dbe54570ff43d45a9e4a7a5b005660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  levelComp: {fileID: 8070233282811624627}
+  levelComp: {fileID: 4953575550334171035}
   button_mute: {fileID: 244325387993025336}
   button_pause: {fileID: 7048151371470120301}
   button_exit: {fileID: 3738377779069445629}
+  button_mute2: {fileID: 0}
   mute: {fileID: 21300000, guid: cdd96369051d87a41a796b0b84881bd3, type: 3}
   no_mute: {fileID: 21300000, guid: 1c1efe57361132b44afcf794cf87c201, type: 3}
   pause: {fileID: 21300000, guid: d9a6e87db92b2cf4fa3cdb83d206f993, type: 3}
@@ -816,7 +817,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 30, y: 493.1}
+  m_AnchoredPosition: {x: 30, y: 454.09998}
   m_SizeDelta: {x: 376.6, y: 90}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &176153082406743160
@@ -896,7 +897,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 321, y: 499}
+  m_AnchoredPosition: {x: 321, y: 460}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5198570722056713130
@@ -1114,7 +1115,7 @@ GameObject:
   - component: {fileID: 2683771264342494194}
   - component: {fileID: 4321195081677272224}
   m_Layer: 5
-  m_Name: LevelPass
+  m_Name: GameOver_Try
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1216,7 +1217,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -232, y: 499}
+  m_AnchoredPosition: {x: -232, y: 460}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6621607143061898176
@@ -1601,6 +1602,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 12800000, guid: 245cfaf9425a438449ba50425d9a3903,
         type: 3}
+    - target: {fileID: 3116940496701261483, guid: 18da7c376d286c34c9a5c4fb59089874,
+        type: 3}
+      propertyPath: m_FontData.m_FontSize
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 3116940497145649871, guid: 18da7c376d286c34c9a5c4fb59089874,
         type: 3}
       propertyPath: m_FontData.m_Font
@@ -1651,13 +1657,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 18da7c376d286c34c9a5c4fb59089874, type: 3}
---- !u!224 &8070233282811624564 stripped
+--- !u!224 &4953575550334171034 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 3116940498132994913, guid: 18da7c376d286c34c9a5c4fb59089874,
     type: 3}
   m_PrefabInstance: {fileID: 8070233282811624699}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &8070233282811624627 stripped
+--- !u!1 &4953575550334171035 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3116940498132994912, guid: 18da7c376d286c34c9a5c4fb59089874,
     type: 3}

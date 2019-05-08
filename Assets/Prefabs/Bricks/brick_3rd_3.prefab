@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 6465554153924933416}
   - component: {fileID: 6465554153924933417}
   - component: {fileID: 3757879992432993558}
+  - component: {fileID: 2564895251414141440}
   m_Layer: 0
-  m_Name: tugla11
+  m_Name: brick_3rd_3
   m_TagString: 1rd_brick
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,3 +107,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.41722435, y: 0.18564782}
   m_EdgeRadius: 0
+--- !u!95 &2564895251414141440
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6465554153924933422}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8fc607d4bd3f8cf4fbce40fd50b44b0c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

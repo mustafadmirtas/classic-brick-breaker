@@ -25,7 +25,7 @@ public class GP_AdManager : MonoBehaviour
                 DontDestroyOnLoad(gameObject);
             }
         }
-        string appId = "ca-app-pub-3940256099942544~3347511713le";
+        string appId = "";
         // Initialize the Google Mobile Ads SDK.
         MobileAds.Initialize(appId);
         RequestBanner();
@@ -44,6 +44,7 @@ public class GP_AdManager : MonoBehaviour
         rewardVideoAD.OnAdClosed += HandleRewardBasedVideoClosed;
         // Called when the ad click caused the user to leave the application.
         rewardVideoAD.OnAdLeavingApplication += HandleRewardBasedVideoLeftApplication;
+        Display_Banner();
         RequestInt();
         RequestReward();
     }
@@ -51,10 +52,10 @@ public class GP_AdManager : MonoBehaviour
     private void RequestBanner()
     {
     
-        string adUnitId = "ca-app-pub-3940256099942544/6300978111";
-        AdSize adSize = new AdSize(280, 40);
+        string adUnitId = "";
+        
         // Create a 280x40 banner at the top of the screen.
-        bannerAD = new BannerView(adUnitId, adSize, AdPosition.Top);
+        bannerAD = new BannerView(adUnitId, AdSize.Banner, AdPosition.Top);
         AdRequest request = new AdRequest.Builder().Build();
         // Load the banner with the request.
         bannerAD.LoadAd(request);
@@ -75,7 +76,7 @@ public class GP_AdManager : MonoBehaviour
     private void InterstitialRequest()
     {
 
-        string ins_ID = "ca-app-pub-3940256099942544/1033173712";
+        string ins_ID = "";
 
         // Create a 320x50 banner at the top of the screen.
         interstitialAD = new InterstitialAd(ins_ID);
@@ -88,7 +89,7 @@ public class GP_AdManager : MonoBehaviour
     private void RewardedAdsRequest()
     {
 
-        string video_ID = "ca-app-pub-3940256099942544/5224354917";
+        string video_ID = "";
         // Create a 320x50 banner at the top of the screen.
         rewardVideoAD = RewardBasedVideoAd.Instance;
 

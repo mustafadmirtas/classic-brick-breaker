@@ -11,13 +11,15 @@ public class Play : MonoBehaviour
     public GameObject ball,weapon1,weapon2,weapon3,weapon4,bullet,soundManager,levelComp;
     public Rigidbody2D rigidbody,ball_rb;
     Vector2 vector = new Vector2(5, 0);
-    float maxSpeed = 10f;
-    float width, height,timeLastShot,delayBetweenBullets = 0.5f;
+    readonly float maxSpeed = 10f;
+    private readonly float width;
+    private float height;
+    private float timeLastShot;
+    private float delayBetweenBullets = 0.5f;
     int stick_size,stick_type,i=0;
     Vector2 position;
     Game game;
     static bool firsttouch;
-    public Text[] texts = new Text[10];
     public Sprite spr, spr2, tp_spr,normal_stick,normal_ball;
     SoundScript soundScript;
     public Button button_nextlevel, button_quit;
@@ -63,7 +65,7 @@ public class Play : MonoBehaviour
             if ((Time.time > timeLastShot + delayBetweenBullets))
             {
                 timeLastShot = Time.time;
-                startFire();
+                StartFire();
             }
         }
         // when player touch screen if it is first give ball velocity
@@ -121,7 +123,7 @@ public class Play : MonoBehaviour
                         firsttouch = true;
                     }
                     Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                if (pos.y < 3.5f)
+                if (pos.y < 2.5f)
                 {
                     position = new Vector2(-pos.x, pos.y);
                     rigidbody.position = new Vector2(-position.x, -3.06f);
@@ -136,27 +138,27 @@ public class Play : MonoBehaviour
         
         if (collision.gameObject.CompareTag("big")) // if stick tag with big skill 
         {
-            do_big();
+            DoBig();
             Destroy(collision.gameObject);
             
         }
         if (collision.gameObject.CompareTag("fire")) // if stick tag with fire skill 
         {
-            changeBall(tp_spr);
+            ChangeBall(tp_spr);
             Destroy(collision.gameObject);
-            Game.instance.setBallType(1);
+            Game.instance.SetBallType(1);
         }
         if (collision.gameObject.CompareTag("gun")) // if stick tag with gun skill 
         {
             if(stick_type == 0)
             {  
-                changeStick(spr);
+                ChangeStick(spr);
                 
                 stick_type = 1;               
             }
             else if (stick_type == 1)
             {
-                changeStick(spr2);
+                ChangeStick(spr2);
                 
                 stick_type = 2;
             }
@@ -164,21 +166,21 @@ public class Play : MonoBehaviour
         }
         if (collision.gameObject.CompareTag("small")) // if stick tag with small skill 
         {
-            do_small();
+            DoSmall();
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.CompareTag("triple")) // if stick tag with triple skill 
         {
-            do_triple();
+            DoTriple();
             Destroy(collision.gameObject);
         }
         if (collision.gameObject.CompareTag("through")) // if stick tag with through skill 
         {
-            through();
+            Through();
             Destroy(collision.gameObject);
         }
     }
-    void do_big()  // when call this function do stick size bigger
+    void DoBig()  // when call this function do stick size bigger
     {
         if (stick_size < 2)
         {
@@ -186,7 +188,7 @@ public class Play : MonoBehaviour
             stick_size += 1;
         }
     }
-    void do_small() // when call this function do stick size smaller
+    void DoSmall() // when call this function do stick size smaller
     {
         if (stick_size > -2)
         { 
@@ -194,16 +196,15 @@ public class Play : MonoBehaviour
             stick_size -= 1;
         }
     }
-    void do_triple() 
+    void DoTriple() 
     {
         // take balls position and create new balls there. give them force 
         GameObject[] balls;
-        balls = GameObject.FindGameObjectsWithTag("ball");
-        if (balls.Length > 0 && balls.Length < 10)
-        {
-            for(i=0; i < balls.Length; i++)
+        balls = GameObject.FindGameObjectsWithTag("tas");
+        if(balls.Length > 3)
+         for(i=0; i < 3; i++)
             {
-                Vector2 vector2 = new Vector2(balls[i].transform.position.x, balls[i].transform.position.y);
+                /*Vector2 vector2 = new Vector2(balls[i].transform.position.x, balls[i].transform.position.y);
                 GameObject go2 = Instantiate(balls[i], vector2, Quaternion.identity);
                 Rigidbody2D r2d = go2.GetComponent<Rigidbody2D>();
                 r2d.AddForce(new Vector2(3f, 20f));
@@ -211,15 +212,23 @@ public class Play : MonoBehaviour
                 GameObject go3 = Instantiate(balls[i], vector2, Quaternion.identity);
                 Rigidbody2D r3d = go3.GetComponent<Rigidbody2D>();
                 go3.tag = "ball";
-                r3d.AddForce(new Vector2(-3f, 20f));
+                r3d.AddForce(new Vector2(-3f, 20f));*/
+                Destroy(balls[i]);
+            }
+        else
+        {
+            for (i = 0; i < balls.Length; i++)
+            {
+                Destroy(balls[i]);
             }
         }
+        
     }
-    void changeStick(Sprite spr)
+    void ChangeStick(Sprite spr)
     {     
         gameObject.GetComponent<SpriteRenderer>().sprite = spr;
     }
-    void changeBall(Sprite tp_spr)
+    void ChangeBall(Sprite tp_spr)
     {
         GameObject[] balls = GameObject.FindGameObjectsWithTag("ball");
         foreach (GameObject ball in balls)
@@ -227,7 +236,7 @@ public class Play : MonoBehaviour
             ball.GetComponent<SpriteRenderer>().sprite = tp_spr; 
         }         
     }
-    void startFire()
+    void StartFire()
     {
         if (stick_type == 1)
         {
@@ -270,7 +279,7 @@ public class Play : MonoBehaviour
 
         }
     }
-    void through()
+    void Through()
     {
         GameObject[] bricks, inv_bricks, bricks2, bricks3,bricks4, bricks5;
         bricks = GameObject.FindGameObjectsWithTag("tas");
@@ -299,64 +308,33 @@ public class Play : MonoBehaviour
               firsttouch = false;
               stick_type = 0;
     }
-    int zamanYaz()
-    {
-        // return time seconds
-        float time =Time.time;
-        int saniye = (int) time;
-        return saniye;
-    }
-    void LangCheck()
-    {
-        if (PlayerPrefs.GetInt("Lang", 1) == 1)
-        {
-            texts[0].text = "Skor :";
-            texts[1].text = "Tebrikler";
-            texts[2].text = "Bölümü Tamamladınız";
-            texts[3].text = "Sonraki Bölüme Geç";
-            texts[4].text = "Oyun Bitti";
-            texts[5].text = "Tekrar Deneyin";
-            texts[6].text = "Skorunuz";
-            texts[7].text = "Tekrar Dene";
-            texts[8].text = "Reklam İle Devam Et";
-            texts[9].text = "Çıkış";
-            texts[10].text = "Çıkış";
-        }
-        if (PlayerPrefs.GetInt("Lang", 1) == 2)
-        {
-            texts[0].text = "Score :";
-            texts[1].text = "Congrats!";
-            texts[2].text = "Level Completed";
-            texts[3].text = "Next Level";
-            texts[4].text = "Game Over";
-            texts[5].text = "Try Again";
-            texts[6].text = "Your Score";
-            texts[7].text = "Try Again";
-            texts[8].text = "Continue with Ads";
-            texts[9].text = "Exit";
-            texts[10].text = "Exit";
-
-        }
-    }
     public void SonrakiBolum() // Go back scene which selecting levels
     {
+        if(SceneManager.GetActiveScene().buildIndex < 32) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         levelComp.SetActive(false);
         CreateBall();
         ResetBall();
         ResetStick();
         Time.timeScale = 1;
+        }
+        else {
+            button_nextlevel.enabled = false;
+            button_nextlevel.GetComponentInChildren<Text>().text = "Şimdilik Bitti :(";
+            button_nextlevel.GetComponentInChildren<Text>().color = Color.black;
+        }
     }
     public void Cikis() // Go back scene which selecting levels
     {
         SceneManager.LoadScene(0);
+        Lang.instance.gameObject.SetActive(true);
         Time.timeScale = 0;
     }
     public void ResetBall()
     {
         GameObject ball = GameObject.FindGameObjectWithTag("ball");
         ball.GetComponent<SpriteRenderer>().sprite = normal_ball;
-        Game.instance.setBallType(0);
+        Game.instance.SetBallType(0);
     }
     public void ResetStick()
     {

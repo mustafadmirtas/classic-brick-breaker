@@ -74,7 +74,7 @@ public class GameOver : MonoBehaviour
                     sS.PlaySound(0);
                     
                 }
-                else if(health == 1)
+                else if(health <= 1)
                 {
                     
                     Time.timeScale = 0;
@@ -116,8 +116,14 @@ public class GameOver : MonoBehaviour
     }
     void QuitGame()
     {
-        gameOver.SetActive(false);
         SceneManager.LoadScene(0);
+        gameOver.SetActive(false);
+        Destroy(Game.instance.gameObject);
+        health = 2;
+        Play.instance.ResetBall();
+        Play.instance.ResetStick();
+        Lang.instance.gameObject.SetActive(true);
+       
     }
     void Cont_Ads()
     {

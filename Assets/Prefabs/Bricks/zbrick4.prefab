@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!95 &3337844862637058050
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2937720344062538951}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8fc607d4bd3f8cf4fbce40fd50b44b0c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1001 &4680750025118508988
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10,7 +29,7 @@ PrefabInstance:
     - target: {fileID: 7507989104326333307, guid: 1f4a5daea128d834eb70da8192eddb28,
         type: 3}
       propertyPath: m_Name
-      value: zbrick3 Variant
+      value: zbrick4
       objectReference: {fileID: 0}
     - target: {fileID: 9195436126309684705, guid: 1f4a5daea128d834eb70da8192eddb28,
         type: 3}
@@ -75,3 +94,9 @@ PrefabInstance:
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1f4a5daea128d834eb70da8192eddb28, type: 3}
+--- !u!1 &2937720344062538951 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7507989104326333307, guid: 1f4a5daea128d834eb70da8192eddb28,
+    type: 3}
+  m_PrefabInstance: {fileID: 4680750025118508988}
+  m_PrefabAsset: {fileID: 0}

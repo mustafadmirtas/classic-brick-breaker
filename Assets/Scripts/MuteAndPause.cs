@@ -9,15 +9,14 @@ public class MuteAndPause : MonoBehaviour
 {
     public static MuteAndPause instance;
     public GameObject levelComp;
-    public Button button_mute, button_pause,button_exit;
+    public Button button_mute, button_pause,button_exit,button_mute2;
     public Sprite mute, no_mute, pause, play;
     bool pauser = false, muter = false;
     public Text brick_count;
     // Start is called before the first frame update
     void Start()
     {
-        if (SceneManager.GetActiveScene().buildIndex == 0)
-        {
+     
             if (instance != null)
             {
                 Destroy(gameObject);
@@ -27,19 +26,24 @@ public class MuteAndPause : MonoBehaviour
                 instance = this;
                 DontDestroyOnLoad(gameObject);
             }
-        }
+        
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
 
             gameObject.SetActive(true);
 
         }
-        button_mute.onClick.AddListener(mute_sound);
-        button_pause.onClick.AddListener(pause_play);
+        button_mute.onClick.AddListener(MuteSound);
+        button_mute2.onClick.AddListener(MuteSound);
+        button_pause.onClick.AddListener(PausePlay);
         button_exit.onClick.AddListener(exit);
+        if(PlayerPrefs.GetInt("Sound", 1) == 0)
+        {
+            MuteSound();
+        }
     }
 
-    void pause_play()
+    void PausePlay()
     {
         if(pauser == false)
         {
@@ -48,6 +52,7 @@ public class MuteAndPause : MonoBehaviour
             pauser = true;
             Time.timeScale = 0;
             AudioListener.pause = true;
+            
         }
         else
         {
@@ -58,7 +63,7 @@ public class MuteAndPause : MonoBehaviour
         }
     }
 
-    void mute_sound()
+    public void MuteSound()
     {
 
         if (muter == false)
@@ -66,18 +71,52 @@ public class MuteAndPause : MonoBehaviour
             button_mute.image.sprite = no_mute;
             muter = true;
             AudioListener.pause = true;
+            PlayerPrefs.SetInt("Sound", 0);
+            if (PlayerPrefs.GetInt("Lang", 1) == 1){
+                if (button_mute2 != null)
+                {
+                    button_mute2.GetComponentInChildren<Text>().text = "Kapalı";
+                }
+            }
+            else
+            {
+                if (button_mute2 != null)
+                {
+                    button_mute2.GetComponentInChildren<Text>().text = "Off";
+                }
+            }
+            
         }
         else
         { 
             button_mute.image.sprite = mute;
             muter = false;
             AudioListener.pause = false;
+            PlayerPrefs.SetInt("Sound", 1);
+            if (PlayerPrefs.GetInt("Lang", 1) == 1)
+            {
+                if (button_mute2 != null) { 
+                button_mute2.GetComponentInChildren<Text>().text = "Açık";
+                }
+            }
+            else
+            {
+                if(button_mute2 != null) {
+                    button_mute2.GetComponentInChildren<Text>().text = "On";
+                }
+            }
         }
     }
     void exit()
     {
-        Time.timeScale = 0;
         SceneManager.LoadScene(0);
+        Time.timeScale = 0;
+        Destroy(Game.instance.gameObject);
+        GameOver.instance.health = 2;
+        Play.instance.ResetBall();
+        Play.instance.ResetStick();
+        Lang.instance.gameObject.SetActive(true);
+        
         
     }
     // Update is called once per frame

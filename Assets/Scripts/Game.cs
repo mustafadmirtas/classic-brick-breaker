@@ -11,13 +11,14 @@ public class Game : MonoBehaviour
     public GameObject stick,levelComp,soundManager;
     public Collision2D collision2;
     public int point;
-    int balltype,sticktype,a;
-    public Text score_Text,zaman_Text;
-    float radius = 0.5f;
+    private int balltype;
+    private int sticktype;
+    private readonly int a;
+    private Animator anim;
+    readonly float radius = 0.3f;
     private Collider2D[] hitCol2D;
     public Sprite spr,spr2,tp_spr,spr_brick2,spr_brick1;
     public GameObject[] luck_spec;   
-    public Text[] texts = new Text[10];
     Play play;
     SoundScript soundScript;
     // Start is called before the first frame update
@@ -49,15 +50,18 @@ public class Game : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        SoundScript.instance.PlaySound(3);
         Collider2D collider = collision.collider;
-        isThisEnd();
+        IsThisEnd();
         if (collision.gameObject.CompareTag("cubuk")) // if tag with cubuk
         {
             Vector3 contactPoint = collision.contacts[0].point;
+            if (contactPoint.y > -3.2f) { 
             Vector3 center = collider.bounds.center;
             Vector3 right = new Vector3(contactPoint.x - center.x, 0);  
             // take contact point and find where it touch after that give some rotate like left and right
-            rb.velocity = new Vector2(right.x * 5.5f, 6f);
+            rb.velocity = new Vector2(right.x * 5.5f, 5.5f);
+            }
         }
         if (balltype == 0)
         {
@@ -65,11 +69,12 @@ public class Game : MonoBehaviour
                 look is it last one ItemCreate with ball location*/
             if (collision.gameObject.CompareTag("tas"))
             {
-               Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-               Destroy(collision.gameObject);
-               isThisEnd();
-               ItemCreate(vector2);
                
+               Destroy(collision.gameObject);
+               Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);                
+               IsThisEnd();
+               ItemCreate(vector2);
+                
             }
             if (collision.gameObject.CompareTag("inv_brick")) // if ball tag inv_brick brick will be visible and second tag brick destory
             {
@@ -81,7 +86,7 @@ public class Game : MonoBehaviour
                 {
                     Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
                     Destroy(collision.gameObject);
-                    isThisEnd();
+                    IsThisEnd();
                     ItemCreate(vector2);
                 }
             }
@@ -99,7 +104,7 @@ public class Game : MonoBehaviour
             {
                 Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
                 Destroy(collision.gameObject);
-                isThisEnd();
+                IsThisEnd();
                 ItemCreate(vector2);
             }
         }
@@ -109,9 +114,9 @@ public class Game : MonoBehaviour
                 collision.gameObject.CompareTag("gold_brick") || collision.gameObject.CompareTag("2rd_brick") || collision.gameObject.CompareTag("1rd_brick")) {
 
                 Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
-                patla(collision.contacts[0].point);
+                Patla(collision.contacts[0].point);
                 ItemCreate(vector2);
-                isThisEnd();
+                IsThisEnd();
                 
             }
         }
@@ -124,47 +129,47 @@ public class Game : MonoBehaviour
             Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
             Destroy(collision.gameObject);
             ItemCreate(vector2);
-            isThisEnd();
+            IsThisEnd();
         }
         if (collision.gameObject.CompareTag("inv_brick"))
         {
             Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
             Destroy(collision.gameObject);
             ItemCreate(vector2);
-            isThisEnd();
+            IsThisEnd();
         }
         if (collision.gameObject.CompareTag("3rd_brick"))
         {
             Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
             Destroy(collision.gameObject);        
             ItemCreate(vector2);
-            isThisEnd();
+            IsThisEnd();
         }
         if (collision.gameObject.CompareTag("2rd_brick"))
         {
             Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
             Destroy(collision.gameObject);
             ItemCreate(vector2);
-            isThisEnd();
+            IsThisEnd();
         }
         if (collision.gameObject.CompareTag("1rd_brick"))
         {
             Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
             Destroy(collision.gameObject);
-            isThisEnd();
+            IsThisEnd();
             ItemCreate(vector2);
         }
         if (collision.gameObject.CompareTag("gold_brick"))
         {
             Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
             Destroy(collision.gameObject);
-            isThisEnd();
+            IsThisEnd();
             ItemCreate(vector2);
         }
 
     }
 
-    void patla(Vector2 patlamaNoktası)            
+    void Patla(Vector2 patlamaNoktası)            
     {
         /* when ball have fire skill we take contact point and this function destroy 
           brick with given radius where the touch ball to brick*/
@@ -178,13 +183,13 @@ public class Game : MonoBehaviour
                 Destroy(hitCol.gameObject);
             }
         }
-        isThisEnd();
+        IsThisEnd();
     }
     void ItemCreate(Vector2 vector2)
     {
-        /* Item create is give skills to player, take random number if it is bigger than 70 gives one skill. It means %30 chance */
+        /* Item create is give skills to player, take random number if it is bigger than 85 gives one skill. It means %15 chance */
         int a = Random.Range(0, 100);
-        if( a > 1) { 
+        if( a > 90) { 
         GameObject go2 = Instantiate(luck_spec[Random.Range(0,6)], vector2, Quaternion.identity);
         Rigidbody2D r2d = go2.GetComponent<Rigidbody2D>();
         r2d.bodyType = RigidbodyType2D.Dynamic;
@@ -193,7 +198,7 @@ public class Game : MonoBehaviour
         Destroy(go2, 6f);
         }
     }
-    public void isThisEnd()
+    public void IsThisEnd()
     {
         if(SceneManager.GetActiveScene().buildIndex > 0) {
           
@@ -232,7 +237,7 @@ public class Game : MonoBehaviour
             
         }
     }
-    public void setBallType(int a)
+    public void SetBallType(int a)
     {        
         balltype = a;
     }

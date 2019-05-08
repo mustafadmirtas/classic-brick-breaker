@@ -5,21 +5,27 @@ using UnityEngine.UI;
 
 public class Lang : MonoBehaviour
 {
-    public Button[] buttons = new Button[3];
-    public Sprite[] tr = new Sprite[4], en = new Sprite[4];
-    Text[] text;
-    string[] en_text, tr_text;
-    MenuScript scriptMenu;
+    public static Lang instance;
+    public Text[] text;
     public Button button_tr,button_eng;
     public GameObject panel_lang;
-    public Image image_lvl;
     // Start is called before the first frame update
     void Start()
     {
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        instance = this;
         button_tr.onClick.AddListener(() => { SelectLang(1); });
         button_eng.onClick.AddListener(() => { SelectLang(2); });
         LangChecker();
-
+        
     }
 
     // Update is called once per frame
@@ -31,20 +37,65 @@ public class Lang : MonoBehaviour
     {
         if (PlayerPrefs.GetInt("Lang", 1) == 1)
         {
-            buttons[0].image.sprite = tr[0];
-            buttons[1].image.sprite = tr[1];
-            buttons[2].image.sprite = tr[2];
+            text[0].text = "Bölümler";
+            text[1].text = "Çıkış";
+            text[2].text = "Dil";
+            text[3].text = "Sesler";
+            if(PlayerPrefs.GetInt("Sound", 1) == 1)
+            {
+                text[4].text = "Açık";
+            }
+            else
+            {
+                text[4].text = "Kapalı";
+            }
+            text[5].text = "Geri Dön";
+            text[6].text = "Kalan Taş Sayısı";
+            text[7].text = "Tebrikler!";
+            text[8].text = "Bölüm Tamamlandı";
+            text[9].text = "Sonraki Bölüm";
+            text[10].text = "Çıkış";
+            text[11].text = "Bölüm Sona Erdi";
+            text[12].text = "Tekrar Deneyin";
+            text[13].text = "Tekrar Deneyin";
+            text[14].text = "Reklam İle Devam Et";
+            text[15].text = "Çıkış";
+            text[16].text = "Oyna";
+            text[17].text = "Ayarlar";
+            text[18].text = "Çıkış";
 
         }
         if (PlayerPrefs.GetInt("Lang", 1) == 2)
         {
-            buttons[0].image.sprite = en[0];
-            buttons[1].image.sprite = en[1];
-            buttons[2].image.sprite = en[2];
-
+            text[0].text = "Levels";
+            text[1].text = "Exit";
+            text[2].text = "Language";
+            text[3].text = "Sounds";
+            if (PlayerPrefs.GetInt("Sound", 1) == 1)
+            {
+                text[4].text = "On";
+            }
+            else
+            {
+                text[4].text = "Off";
+            }
+            text[5].text = "Go Back";
+            text[6].text = "Bricks Remaining";
+            text[7].text = "Congratulations!";
+            text[8].text = "Level Completed";
+            text[9].text = "Next Level";
+            text[10].text = "Exit";
+            text[11].text = "Game Over!";
+            text[12].text = "Try Again";
+            text[13].text = "Try Again";
+            text[14].text = "Continue with Ads";
+            text[15].text = "Quit";
+            text[16].text = "Play";
+            text[17].text = "Optıons";
+            text[18].text = "Quıt";
         }
     }
-    void SelectLang(int a)
+    public void SelectLang(int a)
     {
         if (a == 1)
         {
@@ -57,7 +108,8 @@ public class Lang : MonoBehaviour
             LangChecker();
         }
         panel_lang.SetActive(false);
+        LangChecker();
     }
-
+    
 
 }

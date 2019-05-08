@@ -21,11 +21,12 @@ public class Bullet : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Game.instance.IsThisEnd();
         // if the bullet tag brick objects destroy bullet and brick
-        if(collision.CompareTag("tas")){
+        if (collision.CompareTag("tas")){
             Destroy(collision.gameObject);
             Destroy(gameObject);
-            Game.instance.isThisEnd();
+            Game.instance.IsThisEnd();
         }
         if (collision.CompareTag("gold_brick"))
         {
@@ -43,7 +44,7 @@ public class Bullet : MonoBehaviour
             {
                 Vector2 vector2 = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
                 Destroy(collision.gameObject);
-                Game.instance.isThisEnd();
+                Game.instance.IsThisEnd();
 
             }
         }
@@ -61,7 +62,7 @@ public class Bullet : MonoBehaviour
         else if (collision.gameObject.CompareTag("1rd_brick"))
         {
             Destroy(collision.gameObject);
-            Game.instance.isThisEnd();
+            Game.instance.IsThisEnd();
         }      
     }
     
