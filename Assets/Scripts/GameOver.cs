@@ -81,7 +81,7 @@ public class GameOver : MonoBehaviour
                     sS.PlaySound(0);
                     health -= 1;
                     cont_ads_button.enabled = true;
-                    cont_ads_button.GetComponentInChildren<Text>().text = "Cont With Ads";
+                    cont_ads_button.GetComponentInChildren<Text>().text = Lang.instance.text[14].text;
                     if (PlayerPrefs.GetInt("GameOverCount", 0)== 3)
                     {     
                         GP_AdManager.instance.Display_InsterstitialAD();
@@ -112,6 +112,7 @@ public class GameOver : MonoBehaviour
         health = 2;
         Play.instance.ResetBall();
         Play.instance.ResetStick();
+        Game.instance.ResetSpeed();
         play.CreateBall();
     }
     void QuitGame()
@@ -122,6 +123,7 @@ public class GameOver : MonoBehaviour
         health = 2;
         Play.instance.ResetBall();
         Play.instance.ResetStick();
+        Game.instance.ResetSpeed();
         Lang.instance.gameObject.SetActive(true);
        
     }
@@ -141,6 +143,7 @@ public class GameOver : MonoBehaviour
                     gameOver.SetActive(false);
                     Time.timeScale = 1;
                     play.CreateBall();
+                    Game.instance.ResetSpeed();
                 }
             }     
     }  

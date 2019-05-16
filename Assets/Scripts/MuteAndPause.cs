@@ -115,6 +115,7 @@ public class MuteAndPause : MonoBehaviour
         GameOver.instance.health = 2;
         Play.instance.ResetBall();
         Play.instance.ResetStick();
+        Game.instance.ResetSpeed();
         Lang.instance.gameObject.SetActive(true);
         
         

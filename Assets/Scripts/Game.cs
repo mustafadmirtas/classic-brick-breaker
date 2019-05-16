@@ -15,7 +15,7 @@ public class Game : MonoBehaviour
     private int sticktype;
     private readonly int a;
     private Animator anim;
-    readonly float radius = 0.3f;
+    float radius = 0.3f,speed = 4.5f;
     private Collider2D[] hitCol2D;
     public Sprite spr,spr2,tp_spr,spr_brick2,spr_brick1;
     public GameObject[] luck_spec;   
@@ -40,16 +40,22 @@ public class Game : MonoBehaviour
         sticktype = 0;    
         soundScript = soundManager.GetComponent<SoundScript>();
         play = new Play();
+
+
+       
+        
+       
     }
     private void FixedUpdate()
     {
-        // write time every update time
-        
+    
+       
         
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        rb.velocity = new Vector2(rb.velocity.x + 0.1f,rb.velocity.y);
         SoundScript.instance.PlaySound(3);
         Collider2D collider = collision.collider;
         IsThisEnd();
@@ -60,7 +66,7 @@ public class Game : MonoBehaviour
             Vector3 center = collider.bounds.center;
             Vector3 right = new Vector3(contactPoint.x - center.x, 0);  
             // take contact point and find where it touch after that give some rotate like left and right
-            rb.velocity = new Vector2(right.x * 5.5f, 5.5f);
+            rb.velocity = new Vector2(right.x * 5.5f, speed);
             }
         }
         if (balltype == 0)
@@ -241,6 +247,25 @@ public class Game : MonoBehaviour
     {        
         balltype = a;
     }
-   
-    
+    void ChangeSpeed()
+    {
+        // return time seconds
+        int time = (int)Time.time;
+        if (time % 5 == 0)
+        {
+            speed = speed + 0.2f;
+
+        }
+        print(speed.ToString());
+        print(time.ToString());
+    }
+    public void SpeedChanger()
+    {
+        InvokeRepeating("ChangeSpeed", 0f, 1f);
+    }
+    public void ResetSpeed()
+    {
+        speed = 4.5f;
+    }
+
 }

@@ -88,6 +88,8 @@ public class Play : MonoBehaviour
                         Time.timeScale = 1;
                         r2d.velocity = new Vector2(0, 5f);
                         firsttouch = true;
+                        Game.instance.ResetSpeed();
+                        Game.instance.SpeedChanger();
                     }
                     Touch touch = Input.GetTouch(0);
                     if (touch.phase == TouchPhase.Moved)
@@ -121,6 +123,7 @@ public class Play : MonoBehaviour
                         Time.timeScale = 1;
                         r2d.velocity = new Vector2(0, 5f);
                         firsttouch = true;
+                        Game.instance.SpeedChanger();
                     }
                     Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 if (pos.y < 2.5f)
@@ -310,12 +313,13 @@ public class Play : MonoBehaviour
     }
     public void SonrakiBolum() // Go back scene which selecting levels
     {
-        if(SceneManager.GetActiveScene().buildIndex < 31) {
+        if(SceneManager.GetActiveScene().buildIndex < 30) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         levelComp.SetActive(false);
         CreateBall();
         ResetBall();
         ResetStick();
+        Game.instance.ResetSpeed();
         Time.timeScale = 1;
         }
         else {

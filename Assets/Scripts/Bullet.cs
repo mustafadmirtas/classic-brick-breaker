@@ -53,16 +53,19 @@ public class Bullet : MonoBehaviour
         {
             collision.gameObject.transform.tag = "2rd_brick";
             collision.gameObject.GetComponent<SpriteRenderer>().sprite = spr_brick2;
+            Destroy(gameObject);
         }
         else if (collision.gameObject.CompareTag("2rd_brick"))
         {
             collision.gameObject.tag = "1rd_brick";
             collision.gameObject.GetComponent<SpriteRenderer>().sprite = spr_brick1;
+            Destroy(gameObject);
         } 
         else if (collision.gameObject.CompareTag("1rd_brick"))
         {
             Destroy(collision.gameObject);
             Game.instance.IsThisEnd();
+            Destroy(gameObject);
         }      
     }
     

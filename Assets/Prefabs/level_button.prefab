@@ -188,11 +188,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 245cfaf9425a438449ba50425d9a3903, type: 3}
-    m_FontSize: 84
-    m_FontStyle: 0
+    m_FontSize: 87
+    m_FontStyle: 1
     m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 84
+    m_MaxSize: 97
     m_Alignment: 7
     m_AlignByGeometry: 0
     m_RichText: 1
