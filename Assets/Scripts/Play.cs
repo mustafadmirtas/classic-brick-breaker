@@ -86,7 +86,7 @@ public class Play : MonoBehaviour
 
                         Rigidbody2D r2d = go.GetComponent<Rigidbody2D>();
                         Time.timeScale = 1;
-                        r2d.velocity = new Vector2(0, 5f);
+                        r2d.velocity = new Vector2(0, 4.8f);
                         firsttouch = true;
                         Game.instance.ResetSpeed();
                         Game.instance.SpeedChanger();
@@ -313,18 +313,26 @@ public class Play : MonoBehaviour
     }
     public void SonrakiBolum() // Go back scene which selecting levels
     {
-        if(SceneManager.GetActiveScene().buildIndex < 30) {
+        if(SceneManager.GetActiveScene().buildIndex < 40) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         levelComp.SetActive(false);
         CreateBall();
         ResetBall();
         ResetStick();
+        GameOver.instance.image2.SetActive(true);
         Game.instance.ResetSpeed();
         Time.timeScale = 1;
         }
         else {
             button_nextlevel.enabled = false;
-            button_nextlevel.GetComponentInChildren<Text>().text = "Şimdilik Bitti :(";
+            if(PlayerPrefs.GetInt("Lang", 1) == 1)
+            {
+                button_nextlevel.GetComponentInChildren<Text>().text = "Şimdilik Bitti :(";
+            }
+            if (PlayerPrefs.GetInt("Lang", 2) == 1)
+            {
+                button_nextlevel.GetComponentInChildren<Text>().text = "Levels finish for now :(";
+            }
             button_nextlevel.GetComponentInChildren<Text>().color = Color.black;
         }
     }
@@ -332,6 +340,7 @@ public class Play : MonoBehaviour
     {
         SceneManager.LoadScene(0);
         Lang.instance.gameObject.SetActive(true);
+        MenuScript.instance.OpenLevels();
         Time.timeScale = 0;
     }
     public void ResetBall()

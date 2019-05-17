@@ -113,6 +113,7 @@ public class GameOver : MonoBehaviour
         Play.instance.ResetBall();
         Play.instance.ResetStick();
         Game.instance.ResetSpeed();
+        image2.SetActive(true);
         play.CreateBall();
     }
     void QuitGame()
@@ -124,6 +125,8 @@ public class GameOver : MonoBehaviour
         Play.instance.ResetBall();
         Play.instance.ResetStick();
         Game.instance.ResetSpeed();
+        MenuScript.instance.OpenLevels();
+        image2.SetActive(true);
         Lang.instance.gameObject.SetActive(true);
        
     }

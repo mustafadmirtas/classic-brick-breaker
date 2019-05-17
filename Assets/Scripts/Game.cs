@@ -15,7 +15,7 @@ public class Game : MonoBehaviour
     private int sticktype;
     private readonly int a;
     private Animator anim;
-    float radius = 0.3f,speed = 4.5f;
+    float radius = 0.3f,speed = 4.8f;
     private Collider2D[] hitCol2D;
     public Sprite spr,spr2,tp_spr,spr_brick2,spr_brick1;
     public GameObject[] luck_spec;   
@@ -253,7 +253,7 @@ public class Game : MonoBehaviour
         int time = (int)Time.time;
         if (time % 5 == 0)
         {
-            speed = speed + 0.2f;
+            speed = speed + 0.1f;
 
         }
         print(speed.ToString());

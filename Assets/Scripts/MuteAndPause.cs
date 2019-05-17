@@ -113,9 +113,11 @@ public class MuteAndPause : MonoBehaviour
         Time.timeScale = 0;
         Destroy(Game.instance.gameObject);
         GameOver.instance.health = 2;
+        GameOver.instance.image2.SetActive(true);
         Play.instance.ResetBall();
         Play.instance.ResetStick();
         Game.instance.ResetSpeed();
+        MenuScript.instance.OpenLevels();
         Lang.instance.gameObject.SetActive(true);
         
         
