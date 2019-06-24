@@ -21,6 +21,8 @@ public class Game : MonoBehaviour
     public GameObject[] luck_spec;   
     Play play;
     SoundScript soundScript;
+    private IEnumerator cr; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -40,11 +42,11 @@ public class Game : MonoBehaviour
         sticktype = 0;    
         soundScript = soundManager.GetComponent<SoundScript>();
         play = new Play();
+       
 
 
-       
-        
-       
+
+
     }
     private void FixedUpdate()
     {
@@ -61,12 +63,15 @@ public class Game : MonoBehaviour
         IsThisEnd();
         if (collision.gameObject.CompareTag("cubuk")) // if tag with cubuk
         {
+
             Vector3 contactPoint = collision.contacts[0].point;
             if (contactPoint.y > -3.2f) { 
             Vector3 center = collider.bounds.center;
             Vector3 right = new Vector3(contactPoint.x - center.x, 0);  
             // take contact point and find where it touch after that give some rotate like left and right
             rb.velocity = new Vector2(right.x * 5.5f, speed);
+
+
             }
         }
         if (balltype == 0)
@@ -250,22 +255,36 @@ public class Game : MonoBehaviour
     void ChangeSpeed()
     {
         // return time seconds
-        int time = (int)Time.time;
-        if (time % 5 == 0)
-        {
-            speed = speed + 0.1f;
-
-        }
-        print(speed.ToString());
-        print(time.ToString());
+        
+        
     }
-    public void SpeedChanger()
+    IEnumerator Example() // every 5 second speed increases
     {
-        InvokeRepeating("ChangeSpeed", 0f, 1f);
+        while (true) { 
+            if(speed < 7.1f) { 
+        GameObject go = GameObject.FindGameObjectWithTag("ball");
+        Rigidbody2D r2d = go.GetComponent<Rigidbody2D>();
+        r2d.velocity = new Vector2(r2d.velocity.x, (r2d.velocity.y + 0.07f));
+        
+             print(speed.ToString());
+        
+             speed = speed + 0.3f;
+             print(Time.time);
+            }
+            yield return new WaitForSeconds(4);
+        }
     }
+
     public void ResetSpeed()
     {
         speed = 4.5f;
     }
-
+    public void StartSpeedChange()
+    {
+        StartCoroutine(Example());
+    }
+    public void StopSpeedChange()
+    {
+        StopCoroutine(Example());
+    }
 }

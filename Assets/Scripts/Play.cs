@@ -89,7 +89,7 @@ public class Play : MonoBehaviour
                         r2d.velocity = new Vector2(0, 4.8f);
                         firsttouch = true;
                         Game.instance.ResetSpeed();
-                        Game.instance.SpeedChanger();
+                        Game.instance.StartSpeedChange();
                     }
                     Touch touch = Input.GetTouch(0);
                     if (touch.phase == TouchPhase.Moved)
@@ -123,7 +123,8 @@ public class Play : MonoBehaviour
                         Time.timeScale = 1;
                         r2d.velocity = new Vector2(0, 5f);
                         firsttouch = true;
-                        Game.instance.SpeedChanger();
+                        Game.instance.ResetSpeed();
+                        Game.instance.StartSpeedChange();
                     }
                     Vector2 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
                 if (pos.y < 2.5f)
@@ -321,6 +322,7 @@ public class Play : MonoBehaviour
         ResetStick();
         GameOver.instance.image2.SetActive(true);
         Game.instance.ResetSpeed();
+   
         Time.timeScale = 1;
         }
         else {
@@ -341,6 +343,7 @@ public class Play : MonoBehaviour
         SceneManager.LoadScene(0);
         Lang.instance.gameObject.SetActive(true);
         MenuScript.instance.OpenLevels();
+        Game.instance.StopSpeedChange();
         Time.timeScale = 0;
     }
     public void ResetBall()

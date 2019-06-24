@@ -55,7 +55,7 @@ public class GP_AdManager : MonoBehaviour
         string adUnitId = "ca-app-pub-8685854447544440/7604588000";
         
         // Create a 280x40 banner at the top of the screen.
-        bannerAD = new BannerView(adUnitId, AdSize.Banner, AdPosition.Top);
+        bannerAD = new BannerView(adUnitId, AdSize.SmartBanner, AdPosition.Top);
         AdRequest request = new AdRequest.Builder().Build();
         // Load the banner with the request.
         bannerAD.LoadAd(request);

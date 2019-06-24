@@ -81,6 +81,7 @@ public class GameOver : MonoBehaviour
                     sS.PlaySound(0);
                     health -= 1;
                     cont_ads_button.enabled = true;
+                    Game.instance.StopSpeedChange();
                     cont_ads_button.GetComponentInChildren<Text>().text = Lang.instance.text[14].text;
                     if (PlayerPrefs.GetInt("GameOverCount", 0)== 3)
                     {     
@@ -126,6 +127,7 @@ public class GameOver : MonoBehaviour
         Play.instance.ResetStick();
         Game.instance.ResetSpeed();
         MenuScript.instance.OpenLevels();
+        Game.instance.StopSpeedChange();
         image2.SetActive(true);
         Lang.instance.gameObject.SetActive(true);
        

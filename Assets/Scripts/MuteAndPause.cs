@@ -8,7 +8,7 @@ using UnityEngine.UI;
 public class MuteAndPause : MonoBehaviour
 {
     public static MuteAndPause instance;
-    public GameObject levelComp;
+    public GameObject levelComp, right_stick,left_stick;
     public Button button_mute, button_pause,button_exit,button_mute2;
     public Sprite mute, no_mute, pause, play;
     bool pauser = false, muter = false;
@@ -36,11 +36,12 @@ public class MuteAndPause : MonoBehaviour
         button_mute.onClick.AddListener(MuteSound);
         button_mute2.onClick.AddListener(MuteSound);
         button_pause.onClick.AddListener(PausePlay);
-        button_exit.onClick.AddListener(exit);
+        button_exit.onClick.AddListener(Exit);
         if(PlayerPrefs.GetInt("Sound", 1) == 0)
         {
             MuteSound();
         }
+        ScreenSizeChecker();
     }
 
     void PausePlay()
@@ -62,7 +63,7 @@ public class MuteAndPause : MonoBehaviour
             AudioListener.pause = false;
         }
     }
-
+    Camera mainCamera;
     public void MuteSound()
     {
 
@@ -107,7 +108,7 @@ public class MuteAndPause : MonoBehaviour
             }
         }
     }
-    void exit()
+    void Exit() // reset all variables
     {
         SceneManager.LoadScene(0);
         Time.timeScale = 0;
@@ -119,8 +120,23 @@ public class MuteAndPause : MonoBehaviour
         Game.instance.ResetSpeed();
         MenuScript.instance.OpenLevels();
         Lang.instance.gameObject.SetActive(true);
-        
-        
+ 
+    }
+    void ScreenSizeChecker()
+    {
+        float h = Screen.height;
+        float w = Screen.width;
+        // left -2.80 right 2.80
+        if((h== 2960 && w == 1440) || (h == 2160 && w == 1080) )
+        {
+            mainCamera = Camera.main;
+
+            mainCamera.orthographicSize = 6f;
+            mainCamera.transform.localScale = new Vector3(1f, 1.22f, 1f);
+            
+          //  left_stick.transform.position = new Vector3(-2.8f, 0, 0);
+          //  right_stick.transform.position = new Vector3(2.8f, 0, 0);
+        }
     }
     // Update is called once per frame
     void Update()
