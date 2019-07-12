@@ -21,7 +21,6 @@ public class Lang : MonoBehaviour
             instance = this;
             DontDestroyOnLoad(gameObject);
         }
-        instance = this;
         button_tr.onClick.AddListener(() => { SelectLang(1); });
         button_eng.onClick.AddListener(() => { SelectLang(2); });
         LangChecker();

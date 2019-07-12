@@ -39,7 +39,7 @@ public class Play : MonoBehaviour
                 DontDestroyOnLoad(gameObject);
             }
         }
-        button_nextlevel.onClick.AddListener(SonrakiBolum);
+        button_nextlevel.onClick.AddListener(NextLevel);
         button_quit.onClick.AddListener(Cikis);
         rigidbody = GetComponent<Rigidbody2D>();
         game = new Game();
@@ -312,7 +312,7 @@ public class Play : MonoBehaviour
               firsttouch = false;
               stick_type = 0;
     }
-    public void SonrakiBolum() // Go back scene which selecting levels
+    public void NextLevel() // Go back scene which selecting levels
     {
         if(SceneManager.GetActiveScene().buildIndex < 40) {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);

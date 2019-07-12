@@ -8,15 +8,16 @@ using UnityEngine.UI;
 public class MuteAndPause : MonoBehaviour
 {
     public static MuteAndPause instance;
-    public GameObject levelComp, right_stick,left_stick;
-    public Button button_mute, button_pause,button_exit,button_mute2;
+    public GameObject levelComp, right_stick,left_stick,canvas;
+    public Button button_mute, button_pause,button_mute2;
     public Sprite mute, no_mute, pause, play;
     bool pauser = false, muter = false;
     public Text brick_count;
     // Start is called before the first frame update
     void Start()
     {
-     
+
+
             if (instance != null)
             {
                 Destroy(gameObject);
@@ -27,6 +28,7 @@ public class MuteAndPause : MonoBehaviour
                 DontDestroyOnLoad(gameObject);
             }
         
+
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
 
@@ -36,12 +38,11 @@ public class MuteAndPause : MonoBehaviour
         button_mute.onClick.AddListener(MuteSound);
         button_mute2.onClick.AddListener(MuteSound);
         button_pause.onClick.AddListener(PausePlay);
-        button_exit.onClick.AddListener(Exit);
         if(PlayerPrefs.GetInt("Sound", 1) == 0)
         {
             MuteSound();
         }
-        ScreenSizeChecker();
+       // ScreenSizeChecker();
     }
 
     void PausePlay()
@@ -108,21 +109,8 @@ public class MuteAndPause : MonoBehaviour
             }
         }
     }
-    void Exit() // reset all variables
-    {
-        SceneManager.LoadScene(0);
-        Time.timeScale = 0;
-        Destroy(Game.instance.gameObject);
-        GameOver.instance.health = 2;
-        GameOver.instance.image2.SetActive(true);
-        Play.instance.ResetBall();
-        Play.instance.ResetStick();
-        Game.instance.ResetSpeed();
-        MenuScript.instance.OpenLevels();
-        Lang.instance.gameObject.SetActive(true);
- 
-    }
-    void ScreenSizeChecker()
+
+   /* void ScreenSizeChecker()
     {
         float h = Screen.height;
         float w = Screen.width;
@@ -134,10 +122,10 @@ public class MuteAndPause : MonoBehaviour
             mainCamera.orthographicSize = 6f;
             mainCamera.transform.localScale = new Vector3(1f, 1.22f, 1f);
             
-          //  left_stick.transform.position = new Vector3(-2.8f, 0, 0);
-          //  right_stick.transform.position = new Vector3(2.8f, 0, 0);
+           left_stick.transform.position = new Vector3(-2.8f, 0, 0);
+          right_stick.transform.position = new Vector3(2.8f, 0, 0);
         }
-    }
+    }*/
     // Update is called once per frame
     void Update()
     {

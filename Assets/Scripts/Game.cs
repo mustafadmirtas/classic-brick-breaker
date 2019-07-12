@@ -200,7 +200,7 @@ public class Game : MonoBehaviour
     {
         /* Item create is give skills to player, take random number if it is bigger than 85 gives one skill. It means %15 chance */
         int a = Random.Range(0, 100);
-        if( a > 90) { 
+        if( a < 90) { 
         GameObject go2 = Instantiate(luck_spec[Random.Range(0,6)], vector2, Quaternion.identity);
         Rigidbody2D r2d = go2.GetComponent<Rigidbody2D>();
         r2d.bodyType = RigidbodyType2D.Dynamic;
@@ -241,6 +241,7 @@ public class Game : MonoBehaviour
             {
                 
                 PlayerPrefs.SetInt("Comp_Levels", SceneManager.GetActiveScene().buildIndex + 1);
+                SQLCon.instance.UpdateLoad();
             }
                 balltype = 0;
                 Time.timeScale = 0;
@@ -266,10 +267,10 @@ public class Game : MonoBehaviour
         Rigidbody2D r2d = go.GetComponent<Rigidbody2D>();
         r2d.velocity = new Vector2(r2d.velocity.x, (r2d.velocity.y + 0.07f));
         
-             print(speed.ToString());
+      
         
              speed = speed + 0.3f;
-             print(Time.time);
+       
             }
             yield return new WaitForSeconds(4);
         }

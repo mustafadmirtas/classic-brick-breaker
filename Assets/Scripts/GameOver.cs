@@ -72,7 +72,7 @@ public class GameOver : MonoBehaviour
                     play.CreateBall();
                     image2.SetActive(false);
                     sS.PlaySound(0);
-                    
+                    Game.instance.StopSpeedChange();
                 }
                 else if(health <= 1)
                 {

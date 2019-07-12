@@ -1,0 +1,35 @@
+fileFormatVersion: 2
+guid: 71277ada951088143ba4493c3b2d6a9f
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - buttonSend: {instanceID: 0}
+  - brick1: {fileID: 879414106260838440, guid: 53f0d1830934a6c4aaf846de1279374f, type: 3}
+  - brick2: {fileID: 213953054389478572, guid: 829620ec81eebf442a99510f267bc2e2, type: 3}
+  - brick3: {fileID: 7507989104326333307, guid: 1f4a5daea128d834eb70da8192eddb28,
+      type: 3}
+  - brick4: {fileID: 2937720344062538951, guid: 4813eb2a8b5509140bcaee8f7dfc18d4,
+      type: 3}
+  - brick5: {fileID: 7330233563524166727, guid: e7a395ae2f3aa0d45886c447bdbde5cf,
+      type: 3}
+  - brick6: {fileID: 2342670122501567142, guid: f043ee06a22e6d9449c670477ee80b1e,
+      type: 3}
+  - brick7: {fileID: 4290496561509637189, guid: e47fe1fdba4873346bd1e6ee72b19323,
+      type: 3}
+  - brick8: {fileID: 2054576640523590877, guid: 320f03cc61cf9d747b2abfd939921faa,
+      type: 3}
+  - brick9: {fileID: 444381940512057366, guid: 2cc0479f16dc7494fb62ef6a44f3740c, type: 3}
+  - brick_gold: {fileID: 1573333515077596860, guid: e7097748203645d4f84ff47131337ee5,
+      type: 3}
+  - brick_inv: {fileID: 2798762719280365983, guid: b7e423c629916be48a9dd49d34565045,
+      type: 3}
+  - brick_3rd2: {fileID: 6171575826068160157, guid: 4acd4e441d40e964c848b97f93307416,
+      type: 3}
+  - brick_3rd1: {fileID: 2440894015987905919, guid: e1b85ce3eb1a6a44ca7714dfdd73e982,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
