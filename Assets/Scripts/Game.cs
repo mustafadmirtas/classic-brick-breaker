@@ -237,10 +237,10 @@ public class Game : MonoBehaviour
             {
                     GP_AdManager.instance.Display_InsterstitialAD();
             }
-            if(PlayerPrefs.GetInt("Comp_Levels") <= SceneManager.GetActiveScene().buildIndex)
+            if(PlayerPrefs.GetInt("Comp_Levels") <= PlayerPrefs.GetInt("CurrentLevel"))
             {
                 
-                PlayerPrefs.SetInt("Comp_Levels", SceneManager.GetActiveScene().buildIndex + 1);
+                PlayerPrefs.SetInt("Comp_Levels", PlayerPrefs.GetInt("CurrentLevel") + 1);
                 SQLCon.instance.UpdateLoad();
             }
                 balltype = 0;

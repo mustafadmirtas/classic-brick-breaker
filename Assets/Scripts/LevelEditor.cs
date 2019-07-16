@@ -2,22 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class LevelEditor : MonoBehaviour
 {
+    public static LevelEditor instance;
     public Button buttonSend,buttonBring,buttonUpdate;
     string taslar,brickname;
     string[] bricks;
     public InputField levelField;
     public GameObject brick1,brick2,brick3, brick4, brick5, brick6, brick7, brick8,
-        brick9,brick_gold,brick_inv,brick_3rd2,brick_3rd1;
+        brick9,brick_gold,brick_inv,brick_3rd2,brick_3rd1,canvas;
+
+    
     // Start is called before the first frame update
     void Start()
     {
-        buttonSend.onClick.AddListener(LevelSend);
-        buttonUpdate.onClick.AddListener(UpdateLevelStart);
-        buttonBring.onClick.AddListener(() => { BringLevelStart(int.Parse(levelField.text)); });
+      // buttonSend.onClick.AddListener(LevelSend);
+      // buttonUpdate.onClick.AddListener(UpdateLevelStart);
+      // buttonBring.onClick.AddListener(() => { BringLevelStart(int.Parse(levelField.text)); });
+        instance = this;
+        
     }
 
     // Update is called once per frame
@@ -183,6 +189,9 @@ public class LevelEditor : MonoBehaviour
     }
     IEnumerator BringLevel(int levelid)
     {
+        PlayerPrefs.SetInt("CurrentLevel", levelid);
+        MenuScript.instance.GoMakeFalse();
+        SceneManager.LoadScene(1);
         DeleteOldLevel();
         WWWForm form = new WWWForm();
         form.AddField("level", levelid);
@@ -245,9 +254,9 @@ public class LevelEditor : MonoBehaviour
                     print("AAA natural");
                     break;
             }
-
+           
         }
-       
+        
     }
     void DeleteOldLevel()
     {

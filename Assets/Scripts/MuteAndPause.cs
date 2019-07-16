@@ -32,7 +32,7 @@ public class MuteAndPause : MonoBehaviour
         if (SceneManager.GetActiveScene().buildIndex == 0)
         {
 
-            gameObject.SetActive(true);
+            MenuScript.instance.GoMakeTrue();
 
         }
         button_mute.onClick.AddListener(MuteSound);

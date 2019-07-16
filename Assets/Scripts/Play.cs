@@ -315,7 +315,7 @@ public class Play : MonoBehaviour
     public void NextLevel() // Go back scene which selecting levels
     {
         if(SceneManager.GetActiveScene().buildIndex < 40) {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        LevelEditor.instance.BringLevelStart(PlayerPrefs.GetInt("CurrentLevel") + 1);
         levelComp.SetActive(false);
         CreateBall();
         ResetBall();

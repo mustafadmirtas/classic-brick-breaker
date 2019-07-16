@@ -26,6 +26,7 @@ TagManager:
   - audiosource
   - canvas
   - gameover
+  - levelbutton
   layers:
   - Default
   - TransparentFX

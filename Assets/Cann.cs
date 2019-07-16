@@ -27,11 +27,12 @@ public class Cann : MonoBehaviour
             Rect rect = camera.rect;
 
             rect.width = 1.0f;
-            rect.height = scaleheight;
+            rect.height = scaleheight+ 18f;
             rect.x = 0;
-            rect.y = (1.0f - scaleheight) / 2.0f;
+            rect.y = (1.0f - scaleheight) / 20.0f;
 
             camera.rect = rect;
+            camera.orthographicSize = 5.5f;
         }
         else // add pillarbox
         {

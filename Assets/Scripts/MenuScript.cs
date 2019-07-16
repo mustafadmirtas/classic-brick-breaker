@@ -24,17 +24,18 @@ public class MenuScript : MonoBehaviour
         language = new Lang();
         foreach (Button button in buttons2)
         {
-            button.onClick.AddListener(() => { SelectLevel(button.GetComponentInChildren<Text>().text); });
+            button.onClick.AddListener(() => { LevelEditor.instance.BringLevelStart(int.Parse(button.GetComponentInChildren<Text>().text)); });
         }
         
         if(PlayerPrefs.GetInt("Lang", 0) == 0)
         {
             panel_lang.SetActive(true);
         }
-        if (PlayerPrefs.GetString("username") != null)
+        if (PlayerPrefs.GetString("username") == "")
         {
-            panel_user.SetActive(false);
+            panel_user.SetActive(true);
         }
+        
         OpenLevels();
     }
 
@@ -73,16 +74,18 @@ public class MenuScript : MonoBehaviour
     {
         panel_opt.SetActive(false);
     }
-    void SelectLevel(string text)
+    public void GoMakeFalse()
     {
-        
-        int b = int.Parse(text);
-        SceneManager.LoadScene(b);
+        gameObject.SetActive(false);
+    }
+    public void GoMakeTrue()
+    {
         gameObject.SetActive(false);
     }
     public void OpenLevels()
     {
         int a = PlayerPrefs.GetInt("Comp_Levels",1);
+        a = 39;
         if(a < 40)
         {
             for(int i = 0; i< a; i++)
@@ -99,6 +102,6 @@ public class MenuScript : MonoBehaviour
         }
         
     }
- 
+   
 
 }

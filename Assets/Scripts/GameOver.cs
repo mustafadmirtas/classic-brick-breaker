@@ -107,7 +107,7 @@ public class GameOver : MonoBehaviour
     }
     void TryAgain()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        LevelEditor.instance.BringLevelStart(PlayerPrefs.GetInt("CurrentLevel"));
         gameOver.SetActive(false);
         Time.timeScale = 1;
         health = 2;
