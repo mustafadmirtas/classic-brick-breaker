@@ -20,7 +20,17 @@ public class MenuScript : MonoBehaviour
         buttonquit_opt.onClick.AddListener(QuitOpt);
         button_quit.onClick.AddListener(QuitGame);
         button_leader.onClick.AddListener(PlayLeaderBoard);
-        instance = this;
+
+        if (instance != null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+
         language = new Lang();
         foreach (Button button in buttons2)
         {
@@ -76,16 +86,18 @@ public class MenuScript : MonoBehaviour
     }
     public void GoMakeFalse()
     {
-        gameObject.SetActive(false);
+        instance = this;
+        instance.gameObject.SetActive(false);
     }
     public void GoMakeTrue()
     {
-        gameObject.SetActive(false);
+        instance = this;
+        instance.gameObject.SetActive(true);
     }
     public void OpenLevels()
     {
         int a = PlayerPrefs.GetInt("Comp_Levels",1);
-        a = 39;
+        
         if(a < 40)
         {
             for(int i = 0; i< a; i++)

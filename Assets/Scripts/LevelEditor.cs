@@ -173,6 +173,7 @@ public class LevelEditor : MonoBehaviour
     public void BringLevelStart(int levelid)
     {
         StartCoroutine(BringLevel(levelid));
+
     }
     IEnumerator AddLevel()
     {
@@ -195,14 +196,14 @@ public class LevelEditor : MonoBehaviour
         DeleteOldLevel();
         WWWForm form = new WWWForm();
         form.AddField("level", levelid);
-        WWW www = new WWW("http://localhost/dexball/bringlevel.php", form);
+        WWW www = new WWW("http://www.mustafademirtas.com/dexball/bringlevel.php", form);
         yield return www;
         print(www.text);
-
+        GameOver.instance.health = 2;
         bricks = www.text.Split('/');
         Vector3 vector3 = new Vector3();
         
-        for (int i = 0; i < bricks.Length; i = i + 4)
+        for (int i = 0; i < bricks.Length -1; i = i + 4)
         {
             vector3.x = float.Parse(bricks[i]);
             vector3.y = float.Parse(bricks[i+1]);
@@ -242,7 +243,8 @@ public class LevelEditor : MonoBehaviour
                     Instantiate(brick_gold, vector3, Quaternion.identity);
                     break;
                 case "brick_inv":
-                    Instantiate(brick_inv, vector3, Quaternion.identity);
+                    GameObject Go = Instantiate(brick_inv, vector3, Quaternion.identity);
+                    Go.GetComponent<SpriteRenderer>().enabled = false;
                     break;
                 case "brick_3rd":
                     Instantiate(brick_3rd1, vector3, Quaternion.identity);
@@ -254,9 +256,11 @@ public class LevelEditor : MonoBehaviour
                     print("AAA natural");
                     break;
             }
+     
            
         }
-        
+
+
     }
     void DeleteOldLevel()
     {
@@ -290,7 +294,7 @@ public class LevelEditor : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("level", levelid);
         form.AddField("bricks", taslar);
-        WWW www = new WWW("http://localhost/dexball/updatelevel.php", form);
+        WWW www = new WWW("http://www.mustafademirtas.com/dexball/updatelevel.php", form);
         yield return www;
         string a = www.text;
         print(www.text);

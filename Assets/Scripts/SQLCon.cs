@@ -26,7 +26,7 @@ public class SQLCon : MonoBehaviour
                 instance = this;
                 DontDestroyOnLoad(gameObject);
             }
-        
+        StartCoroutine(InternetControl());
         level = PlayerPrefs.GetInt("Comp_Levels", 0);
         
     }
@@ -53,15 +53,17 @@ public class SQLCon : MonoBehaviour
         WWWForm form = new WWWForm();
         form.AddField("user_name", nameField.text);
         form.AddField("level", level);
-        WWW www = new WWW("http://localhost/dexball/register.php", form);
+        WWW www = new WWW("http://www.mustafademirtas.com/dexball/register.php", form);
         yield return www;
         string a = www.text;
         print(www.text);
-        if(a == "0 ")
+        print(nameField.text);
+        if (a == "0 ")
         {
             PlayerPrefs.SetString("username", nameField.text);
             Debug.Log("BAŞARILI");
             panelUser.SetActive(false);
+            print(nameField.text);
         }
         else if(a == "1")
         {
@@ -95,7 +97,7 @@ public class SQLCon : MonoBehaviour
         print(PlayerPrefs.GetString("username"));
         level = PlayerPrefs.GetInt("Comp_Levels");
         form.AddField("level", level);
-        WWW www = new WWW("http://localhost/dexball/update.php", form);
+        WWW www = new WWW("http://www.mustafademirtas.com/dexball/update.php", form);
         yield return www;
         string a = www.text;
         print(a);
@@ -109,7 +111,7 @@ public class SQLCon : MonoBehaviour
 
     IEnumerator LeaderBoard()
     {
-        WWW www = new WWW("http://localhost/dexball/leaderboard.php");
+        WWW www = new WWW("http://www.mustafademirtas.com/dexball/leaderboard.php");
         yield return www;
         print(www.text);
 
@@ -127,5 +129,17 @@ public class SQLCon : MonoBehaviour
             b++;
         }
         StopCoroutine(LeaderBoard());
+    }
+    IEnumerator InternetControl()
+    {
+        WWW www = new WWW("http://www.mustafademirtas.com/");
+        yield return www;
+        if(www.error != null)
+        {
+            Application.Quit();
+        }
+        else{
+            print("Internet Var");
+        }
     }
 }

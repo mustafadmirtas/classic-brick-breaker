@@ -2354,7 +2354,7 @@ RectTransform:
   - {fileID: 1647732598}
   - {fileID: 431144137}
   m_Father: {fileID: 1060325430}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -7561,7 +7561,7 @@ RectTransform:
   - {fileID: 1013094816}
   - {fileID: 68574098}
   m_Father: {fileID: 1060325430}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10927,7 +10927,7 @@ RectTransform:
   - {fileID: 1744369960}
   - {fileID: 1760239496}
   m_Father: {fileID: 1060325430}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -10967,7 +10967,7 @@ RectTransform:
   - {fileID: 1348763300}
   - {fileID: 1716244369}
   m_Father: {fileID: 1060325430}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -13210,7 +13210,7 @@ PrefabInstance:
         type: 3}
       propertyPath: tp_spr
       value: 
-      objectReference: {fileID: 21300000, guid: 350aacad64fa23f469366225b5803a24,
+      objectReference: {fileID: 21300000, guid: db38384af5ed75b46aade07fe7d7a0e7,
         type: 3}
     - target: {fileID: 8901536030191591237, guid: 67a8bfd118a45004eb6fa3fa9cecaba7,
         type: 3}
@@ -13794,7 +13794,7 @@ GameObject:
   - component: {fileID: 1041067578}
   - component: {fileID: 1041067577}
   m_Layer: 0
-  m_Name: Text_Play
+  m_Name: Text_LB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14134,10 +14134,10 @@ RectTransform:
   m_Children:
   - {fileID: 377586051}
   - {fileID: 171923552}
-  - {fileID: 191532900}
   - {fileID: 830656519}
   - {fileID: 848874546}
   - {fileID: 570487927}
+  - {fileID: 191532900}
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -14302,6 +14302,10 @@ MonoBehaviour:
   - {fileID: 988077776}
   - {fileID: 1183332186}
   - {fileID: 488857605}
+  - {fileID: 1041067577}
+  - {fileID: 1731454705}
+  - {fileID: 2000545264}
+  - {fileID: 634259383}
   button_tr: {fileID: 1647732599}
   button_eng: {fileID: 431144140}
   panel_lang: {fileID: 191532899}
@@ -19009,16 +19013,6 @@ PrefabInstance:
       propertyPath: m_TagString
       value: adsmanager
       objectReference: {fileID: 0}
-    - target: {fileID: 8668617178995431193, guid: 381b7a339972f454c9a6c8567cdc2f59,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.48
-      objectReference: {fileID: 0}
-    - target: {fileID: 5911011927478702993, guid: 381b7a339972f454c9a6c8567cdc2f59,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 5.66
-      objectReference: {fileID: 0}
     - target: {fileID: 7354161746503999531, guid: 381b7a339972f454c9a6c8567cdc2f59,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -19073,6 +19067,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8668617178995431193, guid: 381b7a339972f454c9a6c8567cdc2f59,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.48
+      objectReference: {fileID: 0}
+    - target: {fileID: 5911011927478702993, guid: 381b7a339972f454c9a6c8567cdc2f59,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.66
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 381b7a339972f454c9a6c8567cdc2f59, type: 3}

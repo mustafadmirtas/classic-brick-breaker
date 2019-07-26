@@ -62,6 +62,10 @@ public class Lang : MonoBehaviour
             text[16].text = "Oyna";
             text[17].text = "Ayarlar";
             text[18].text = "Çıkış";
+            text[19].text = "Lider Tablosu";
+            text[20].text = "Lider Tablosu";
+            text[21].text = "Kullanıcı Adı";
+            text[22].text = "Bölüm";
 
         }
         if (PlayerPrefs.GetInt("Lang", 1) == 2)
@@ -92,6 +96,10 @@ public class Lang : MonoBehaviour
             text[16].text = "Play";
             text[17].text = "Optıons";
             text[18].text = "Quıt";
+            text[19].text = "Leaderboard";
+            text[20].text = "Leaderboard";
+            text[21].text = "Username";
+            text[22].text = "Level";
         }
     }
     public void SelectLang(int a)
